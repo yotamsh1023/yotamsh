@@ -1,4 +1,6 @@
 /* וידג'ט נגישות - ת"י 5568 */
+/* מוסתר – האתר משתמש ב־Enable.co.il. להצגת הוידג'ט שלנו הסר את השורה הבאה */
+.a11y-widget { display: none !important; }
 
 .a11y-widget {
     position: fixed;

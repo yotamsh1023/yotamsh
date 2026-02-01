@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yotamsh - אוטומציות ו-CRM לעסקים</title>
+    <meta name="description" content="בניית מערכות CRM, אוטומציות וצ'אטבוטים לעסקים. תנו לעסק לעבוד בשבילכם.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="additional_styles.css">
+    <link rel="stylesheet" href="accessibility-widget.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">דילוג לתוכן ראשי</a>
+
+    <!-- Background Particles -->
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+    <!-- Navigation (Simple) -->
+    <nav class="navbar" aria-label="ניווט ראשי">
+        <a href="#main-content" class="logo" aria-label="Yotamsh – דף הבית">Yotamsh.</a>
+        <a href="#contact" class="btn-nav">דברו איתי</a>
+    </nav>
+
+    <!-- Section 1: Hero (Mighty Style) -->
+    <header class="hero-section" id="main-content">
+        <div class="neon-shape shape-1" aria-hidden="true"></div>
+        <div class="neon-shape shape-2" aria-hidden="true"></div>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="hero-tagline">יש לי מטרה אחת וזה לעזור לך</p>
+                <h1 class="hero-title">
+                    להפסיק את הבלאגן והמרדף אחרי לידים, הודעות <span class="text-accent">ולקוחות.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    ככה אתה מרוויח יותר כסף, יותר זמן וראש שקט מבלי לעבוד יותר.<br>
+                    אם נמאס לך להעתיק לידים ידנית, לענות כל היום להודעות ולשכוח מי אמור לחזור למי – הגעת למקום הנכון.
+                </p>
+                <!-- Testimonial Cards -->
+                <div class="hero-testimonial-card">
+                    <img src="assets/shoval_Test.jpg" alt="שובל" class="testimonial-avatar">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"תחשוב שהייתי צריך כל ערב, להסתכל על היומן, לראות מי יש לי עוד
+                            יומיים ולהזכיר לו שאנחנו נפגשים והייתי מפספס"</p>
+                        <p class="testimonial-name">- שובל, מאלף כלבים ומומחה בטיפול בבעיות התנהגות</p>
+                    </div>
+                </div>
+                <div class="hero-testimonial-card">
+                    <img src="assets/yotam-hazan.png" alt="יותם חזן" class="testimonial-avatar">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"שמע אחי הצלחתי אתמול בלילה לסיים את הכל וזה עובד נדיר, תודה רבה על העזרה"</p>
+                        <p class="testimonial-name">- יותם חזן, בעלים של חברת פרסום ודיגיטל</p>
+                    </div>
+                </div>
+                <div class="hero-testimonial-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234462b5'/%3E%3Ctext x='50' y='65' font-family='Heebo, sans-serif' font-size='48' font-weight='700' fill='white' text-anchor='middle'%3Eא%3C/text%3E%3C/svg%3E" alt="אריאל" class="testimonial-avatar">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">קודם כול תודה ענקית על הכול אתה מקצוען אמיתי, זמין לכל שאלה ותמיד נותן מענה. באמת מרגיש שאתה איתי לאורך כל הדרך."</p>
+                        <p class="testimonial-name">- אריאל, בעל קבוצות וואטסאפ לפרסום משרות</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visuals">
+                <!-- Floating CRM Screenshots -->
+                <div class="floating-screen screen-1">
+                    <img src="assets/crm-1.jpg" alt="תצוגת מסך של מערכת CRM לניהול לידים">
+                </div>
+                <div class="floating-screen screen-2">
+                    <img src="assets/crm-2.jpg" alt="תצוגת מסך של מערכת CRM לניהול לקוחות">
+                </div>
+                <div class="floating-screen screen-3">
+                    <img src="assets/IMG_9700.jpg" alt="תצוגת מסך של מערכת CRM">
+                </div>
+            </div>
+
+            <a href="#contact" class="btn-primary" style="margin-top: 3rem;">השאירו פרטים לשיחת התאמה</a>
+        </div>
+    </header>
+
+    <!-- Section 2: Process Timeline (Tabs) -->
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">אז איך התהליך עובד?</h2>
+
+            <!-- Tab Navigation (Icons) -->
+            <div class="process-tabs" role="tablist" aria-label="שלבי התהליך">
+                <div class="glowing-line" aria-hidden="true"></div>
+
+                <button type="button" class="tab-item active" role="tab" aria-selected="true" aria-controls="tab-1" id="tab-btn-1" data-tab="1" tabindex="0">
+                    <span class="tab-icon" aria-hidden="true">📞</span>
+                    <span class="visually-hidden">שלב 1: שיחת התאמה</span>
+                </button>
+
+                <button type="button" class="tab-item" role="tab" aria-selected="false" aria-controls="tab-2" id="tab-btn-2" data-tab="2" tabindex="-1">
+                    <span class="tab-icon" aria-hidden="true">📋</span>
+                    <span class="visually-hidden">שלב 2: אפיון ראשוני</span>
+                </button>
+
+                <button type="button" class="tab-item" role="tab" aria-selected="false" aria-controls="tab-3" id="tab-btn-3" data-tab="3" tabindex="-1">
+                    <span class="tab-icon" aria-hidden="true">🧠</span>
+                    <span class="visually-hidden">שלב 3: אפיון מעמיק</span>
+                </button>
+
+                <button type="button" class="tab-item" role="tab" aria-selected="false" aria-controls="tab-4" id="tab-btn-4" data-tab="4" tabindex="-1">
+                    <span class="tab-icon" aria-hidden="true">🏗️</span>
+                    <span class="visually-hidden">שלב 4: בנייה</span>
+                </button>
+
+                <button type="button" class="tab-item" role="tab" aria-selected="false" aria-controls="tab-5" id="tab-btn-5" data-tab="5" tabindex="-1">
+                    <span class="tab-icon" aria-hidden="true">🚀</span>
+                    <span class="visually-hidden">שלב 5: הטמעה והדרכה</span>
+                </button>
+            </div>
+
+            <!-- Tab Content Area -->
+            <div class="process-content-area">
+                <div class="tab-content active" id="tab-1" role="tabpanel" aria-labelledby="tab-btn-1">
+                    <span class="step-badge">שלב 1</span>
+                    <h3>שיחת התאמה</h3>
+                    <p>נבדוק אם זה מתאים ואם אני יכול לעזור לך בכלל.</p>
+                </div>
+
+                <div class="tab-content" id="tab-2" role="tabpanel" aria-labelledby="tab-btn-2">
+                    <span class="step-badge">שלב 2</span>
+                    <h3>אפיון ראשוני</h3>
+                    <p>פגישת אפיון ראשונית (ללא עלות) – מבינים את האתגרים שלך.</p>
+                </div>
+
+                <div class="tab-content" id="tab-3" role="tabpanel" aria-labelledby="tab-btn-3">
+                    <span class="step-badge">שלב 3</span>
+                    <h3>אפיון מעמיק (בעלות)</h3>
+                    <p>מפרקים את התהליכים בעסק שלך, מבינים מה תוקע, ויוצאים עם פתרונות.</p>
+                </div>
+
+                <div class="tab-content" id="tab-4" role="tabpanel" aria-labelledby="tab-btn-4">
+                    <span class="step-badge">שלב 4</span>
+                    <h3>אנחנו בונים</h3>
+                    <p>בונים את המערכת. בדרך כלל לוקח כ-7 עד 14 ימי עסקים.</p>
+                </div>
+
+                <div class="tab-content" id="tab-5" role="tabpanel" aria-labelledby="tab-btn-5">
+                    <span class="step-badge">שלב 5</span>
+                    <h3>הטמעה והדרכה</h3>
+                    <p>מטמיעים את המערכת, עוברים ביחד מקבלים פידבקים ויוצאים לדרך.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: The Problem -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">אתה כבר לא בהתחלה.</h2>
+            <div class="container split-layout">
+                <!-- Right Side: Text Content -->
+                <div class="problem-content">
+                    <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">יש לקוחות, יש לידים, יש
+                        תנועה</h2>
+                    <h3 class="highlight-text">אבל ככל שהעסק גדל - ככה הלחץ מתפוצץ.</h3>
+
+                    <p>רוב הזמן שלך נשרף על דברים שלא באמת מקדמים את העסק:</p>
+                    <ul class="pain-points-list">
+                        <li>הודעות שחוזרות על עצמן</li>
+                        <li>תיאומי פגישות</li>
+                        <li>שליחת קבלות, תשלומים, פתיחת קבוצות</li>
+                    </ul>
+                    <p><strong>שוב, ושוב, ושוב – הכל ידני, הכל עליך.</strong></p>
+
+                    <p class="closing-text">העסק גדל – אבל אתה מרגיש שאתה רק רודף אחריו.</p>
+                </div>
+
+                <!-- Left Side: Problem Cards (The "X" items) -->
+                <div class="problem-visuals">
+                    <div class="problem-list-card">
+                        <div class="card-icon">❌</div>
+                        <div class="card-content">
+                            <h3>אין לך מערכת אחת שמרכזת הכל</h3>
+                        </div>
+                    </div>
+                    <div class="problem-list-card">
+                        <div class="card-icon">❌</div>
+                        <div class="card-content">
+                            <h3>אין לך נתונים אמיתיים לדעת מה עובד</h3>
+                        </div>
+                    </div>
+                    <div class="problem-list-card">
+                        <div class="card-icon">❌</div>
+                        <div class="card-content">
+                            <h3>אין לך זמן לעצור ולהבין איך לשפר</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Mid-Page CTA Section -->
+    <section class="cta-section" aria-labelledby="cta-title-mid">
+        <div class="container">
+            <div class="cta-card">
+                <div class="neon-shape shape-3" aria-hidden="true"></div>
+                <div class="cta-content">
+                    <h2 class="cta-title" id="cta-title-mid">מוכנים לעשות שינוי בעסק?</h2>
+                    <p class="cta-subtitle">השאירו פרטים ואחזור אליכם לשיחת התאמה קצרה.</p>
+
+                    <form class="contact-form-inline" aria-label="טופס יצירת קשר">
+                        <div class="input-group">
+                            <label for="contact-name-mid" class="visually-hidden">שם מלא</label>
+                            <input id="contact-name-mid" type="text" placeholder="שם מלא" required autocomplete="name"
+                                aria-required="true"
+                                oninvalid="this.setCustomValidity('איך אני אדע איך קוראים לך?')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="input-group">
+                            <label for="contact-phone-mid" class="visually-hidden">טלפון</label>
+                            <input id="contact-phone-mid" type="tel" placeholder="טלפון" required autocomplete="tel"
+                                aria-required="true"
+                                oninvalid="this.setCustomValidity('איך אני אתקשר אליך?')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <button type="submit" class="btn-primary">דברו איתי 🚀</button>
+                    </form>
+                    <p class="small-note">בלי התחייבות. שיחה קצרה לבדוק התאמה.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2.5: Video Testimonial (Split Layout) -->
+    <section class="video-section">
+        <div class="container split-layout video-layout">
+            <!-- Right Side: Text -->
+            <div class="video-content">
+                <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">טעימה קטנה ממה שיש ללקוח להגיד
+                </h2>
+                <p class="testimonial-quote">
+                    ״חוסך לי ים של זמן, ים של כסף ובעיקר התעסקות מתישה עם לקוחות ועם דברים טכניים, שפשוט כבעל עסק לא בא
+                    לי להתעסק איתם״
+                </p>
+                <h3 class="highlight-text" style="color: var(--text-main); font-size: 1.2rem; margin-top: 1rem;">אוהד
+                    לוי, בעלים של
+                    חברת אוהדוונצ'רס</h3>
+            </div>
+
+            <!-- Left Side: Video -->
+            <div class="video-container-wrapper">
+                <div class="video-frame">
+                    <video controls width="100%" title="עדות אוהד לוי – אוטומציות חוסכות זמן וכסף">
+                        <source src="assets/Ohad.MP4" type="video/mp4">
+                        הדפדפן שלך לא תומך בניגון וידאו.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Features Grid (Mighty Style) -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">מה אני מציע?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>מערכת CRM</h3>
+                    <p>מערכת מותאמת אישית לניהול לקוחות ומכירות</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>אוטומציות לתהליכים</h3>
+                    <p>ייעול תהליכים עסקיים</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>בוטים חכמים</h3>
+                    <p>אוטומציה וצאטבוטים</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>בינה מלאכותית</h3>
+                    <p>פתרונות AI מתקדמים</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Who Am I -->
+    <section class="why-me-section">
+        <div class="container">
+            <h2 class="section-title">מי אני?</h2>
+            <div class="about-split-layout">
+                <!-- Left Side: Profile Photo -->
+                <div class="profile-photo-wrapper">
+                    <img src="assets/portait photo.jpg" alt="יותם שממה" class="profile-photo">
+                </div>
+
+                <!-- Right Side: Text Content -->
+                <div class="about-content">
+                    <p class="lead-text">נעים מאוד, אני יותם שממה.</p>
+                    <p>אני עוזר לעסקים לעשות סדר בעסק - <br>
+                        להחליף עבודה ידנית ובלאגן במערכת מסודרת שעובדת אוטומטית וברורה.</p>
+
+                    <p>עבדתי עם עשרות עסקים שהגיעו בלי מערכת אמיתית:<br>
+                        מידע מפוזר, הרבה פעולות ידניות, ואין תמונה ברורה של מה קורה בעסק<br>
+                        ובנינו להם תהליכים ואוטומציות שמרכזים הכול במקום אחד.</p>
+
+                    <br>
+                    <h3>למה אני עושה את זה?</h3>
+                    <p>כי לראות את השינוי שזה עושה לעסקים שווה הכול.<br>
+                        יותר סדר, יותר שליטה, יותר הכנסות - וגם יותר זמן לעצמך ולחיים.</p>
+
+                    <p><strong>בלי הבטחות גדולות.<br>
+                            פשוט עסק שעובד בצורה חכמה ויעילה יותר.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Section 7: FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">שאלות נפוצות</h2>
+            <div class="accordion" role="region" aria-label="שאלות נפוצות">
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-1" id="faq-btn-1">כמה זה עולה?</button>
+                    <div class="accordion-content" id="faq-1" role="region" aria-labelledby="faq-btn-1">
+                        <p>
+                            המחיר משתנה לפי צרכי העסק, מורכבויות וחיבורים חיצוניים.<br>
+                            בשיחת האפיון הראשונית אבין בדיוק מה נדרש ותקבלו הצעת מחיר שקופה וברורה.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-2" id="faq-btn-2">אני לא מבין בטכנולוגיה - זה מתאים לי?</button>
+                    <div class="accordion-content" id="faq-2" role="region" aria-labelledby="faq-btn-2">
+                        <p>כן. המטרה היא שהמערכת תהיה פשוטה, ברורה וקלה לתפעול. אתם לא צריכים לדעת “אוטומציות”.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-3" id="faq-btn-3">כמה זמן לוקח פרויקט?</button>
+                    <div class="accordion-content" id="faq-3" role="region" aria-labelledby="faq-btn-3">
+                        <p>בין 7–14 ימי עסקים, תלוי בהיקף.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-4" id="faq-btn-4">זה עובד עם הכלים שאני כבר משתמש בהם?</button>
+                    <div class="accordion-content" id="faq-4" role="region" aria-labelledby="faq-btn-4">
+                        <p>כן. אני מחבר לכלים שאתם כבר עובדים איתם, במידה ואי אפשר להתממשק, כמובן שתדעו.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-5" id="faq-btn-5">האם תהיה תמיכה אחרי ההקמה?</button>
+                    <div class="accordion-content" id="faq-5" role="region" aria-labelledby="faq-btn-5">
+                        <p>
+                            בהחלט. יש תמיכה מלאה בשבועיים - חודש הראשונים של ההטמעה, תלוי בגודל הפרויקט<br>
+                            מעבר לכך, יש אפשרות לחבילת תמיכה שוטפת.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Security & Reliability -->
+    <!-- Section 5: Why Me? (למה אני?) -->
+    <section class="security-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">למה אני?</h2>
+            <div class="security-cards" style="max-width: 1000px; margin: 0 auto;">
+                <div class="sec-card">
+                    <div class="sec-icon">⚡</div>
+                    <h3>זריזות ומהירות</h3>
+                    <p>העבודה מתבצעת בצורה מהירה</p>
+                </div>
+                <div class="sec-card">
+                    <div class="sec-icon">🔍</div>
+                    <h3>שקיפות מלאה</h3>
+                    <p>אתם תמיד תדעו מה קורה בתהליך</p>
+                </div>
+                <div class="sec-card">
+                    <div class="sec-icon">❤️</div>
+                    <h3>אהבה למקצוע</h3>
+                    <p>אני עושה את זה בצורה הכי טובה שיש כי אני פשוט אוהב את מה שאני עושה</p>
+                </div>
+                <div class="sec-card">
+                    <div class="sec-icon">🤝</div>
+                    <h3>אנושיות</h3>
+                    <p>בתהליך כזה חשוב אנושיות ויחס בין אישי</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5.5: Shoval Video Testimonial -->
+    <section class="video-section">
+        <div class="container split-layout video-layout" style="gap: 2rem;">
+            <!-- Left Side: Video (Now Right in RTL) -->
+            <div class="video-container-wrapper" style="flex: 0 0 300px; max-width: 100%;">
+                <div class="video-frame">
+                    <video controls width="100%" style="border-radius: 16px;" title="עדות שובל – אוטומציות לתזכורות פגישות">
+                        <source src="assets/עדות שובל.mp4" type="video/mp4">
+                        הדפדפן שלך לא תומך בניגון וידאו.
+                    </video>
+                </div>
+                <div class="neon-shape shape-1" aria-hidden="true"
+                    style="width: 200px; height: 200px; opacity: 0.1; top: -10px; right: -10px;"></div>
+            </div>
+
+            <!-- Right Side: Text (Now Left in RTL) -->
+            <div class="video-content" style="flex: 1;">
+                <h2 class="section-title" style="text-align: right; margin-bottom: 0.2rem; font-size: 1.8rem;">אני לא
+                    חושב שאני צריך יותר מדי להסביר כמה כוח יש לאוטומציות</h2>
+                <p class="testimonial-quote" style="font-size: 1.1rem;">
+                    פשוט תשמעו מה שובל אמר ותראו את הסרטון הזה
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: CTA (Gradient Card) -->
+    <section id="contact" class="cta-section" aria-labelledby="cta-title-contact">
+        <div class="container">
+            <div class="cta-card">
+                <div class="neon-shape shape-3" aria-hidden="true"></div>
+                <div class="cta-content">
+                    <h2 class="cta-title" id="cta-title-contact">מוכנים לעשות שינוי בעסק?</h2>
+                    <p class="cta-subtitle">השאירו פרטים ואחזור אליכם לשיחת התאמה קצרה.</p>
+
+                    <form class="contact-form-inline" aria-label="טופס יצירת קשר">
+                        <div class="input-group">
+                            <label for="contact-name" class="visually-hidden">שם מלא</label>
+                            <input id="contact-name" type="text" placeholder="שם מלא" required autocomplete="name"
+                                aria-required="true"
+                                oninvalid="this.setCustomValidity('איך אני אדע איך קוראים לך?')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="input-group">
+                            <label for="contact-phone" class="visually-hidden">טלפון</label>
+                            <input id="contact-phone" type="tel" placeholder="טלפון" required autocomplete="tel"
+                                aria-required="true"
+                                oninvalid="this.setCustomValidity('איך אני אתקשר אליך?')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <button type="submit" class="btn-primary">דברו איתי 🚀</button>
+                    </form>
+                    <p class="small-note">בלי התחייבות. שיחה קצרה לבדוק התאמה.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer role="contentinfo">
+        <p><a href="privacy.html">מדיניות פרטיות</a></p>
+        <p>© 2026 Yotamation. כל הזכויות שמורות.</p>
+    </footer>
+
+    <!-- וידג'ט נגישות -->
+    <div class="a11y-widget" role="region" aria-label="נגישות">
+        <button type="button" id="a11y-toggle" class="a11y-toggle" aria-label="פתיחת תפריט נגישות" aria-expanded="false" aria-haspopup="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+            </svg>
+        </button>
+        <div id="a11y-panel" class="a11y-panel" role="dialog" aria-labelledby="a11y-panel-title" aria-label="הגדרות נגישות">
+            <h3 id="a11y-panel-title">הגדרות</h3>
+            <div class="a11y-master a11y-option">
+                <label for="a11y-enabled">נגישות</label>
+                <input type="checkbox" id="a11y-enabled" aria-describedby="a11y-enabled-desc">
+            </div>
+            <span id="a11y-enabled-desc" class="visually-hidden">הפעלת מצב נגישות – השינויים בדף יחולו רק כאשר נגישות מופעלת</span>
+            <div class="a11y-option">
+                <label for="a11y-larger">הגדלת טקסט</label>
+                <input type="checkbox" id="a11y-larger" aria-describedby="a11y-larger-desc">
+            </div>
+            <span id="a11y-larger-desc" class="visually-hidden">מגדיל את גודל הטקסט בדף</span>
+            <div class="a11y-option">
+                <label for="a11y-contrast">ניגודיות גבוהה</label>
+                <input type="checkbox" id="a11y-contrast" aria-describedby="a11y-contrast-desc">
+            </div>
+            <span id="a11y-contrast-desc" class="visually-hidden">מציג את האתר בניגודיות גבוהה</span>
+            <div class="a11y-option">
+                <label for="a11y-underline">הדגשת קישורים</label>
+                <input type="checkbox" id="a11y-underline" aria-describedby="a11y-underline-desc">
+            </div>
+            <span id="a11y-underline-desc" class="visually-hidden">מסמן קישורים בקו תחתון</span>
+            <div class="a11y-option">
+                <label for="a11y-motion">הפחתת תנועה</label>
+                <input type="checkbox" id="a11y-motion" aria-describedby="a11y-motion-desc">
+            </div>
+            <span id="a11y-motion-desc" class="visually-hidden">מבטל אנימציות ומעברים</span>
+            <div class="a11y-btn-group">
+                <button type="button" id="a11y-reset" class="a11y-btn">איפוס</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="accessibility-widget.js"></script>
+</body>
+
+</html>

@@ -682,6 +682,20 @@ ul {
 
 /* Responsive Tabs */
 @media (max-width: 768px) {
+    /* Sticky process section: stays in view until user reaches step 5 and scrolls */
+    .timeline-section {
+        position: sticky;
+        top: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: var(--spacing-md) 0;
+    }
+
+    .timeline-section .timeline-container {
+        width: 100%;
+    }
+
     .process-tabs {
         flex-wrap: wrap;
         padding: 0 1rem;

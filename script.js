@@ -158,43 +158,87 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Mobile only: auto-advance process steps based on scroll position in section
+        // Mobile only: sticky section – stay on section until step 5; each scroll/swipe advances one step
         const processSection = document.getElementById('how-it-works');
         const mobileQuery = window.matchMedia('(max-width: 768px)');
-        let scrollRaf = 0;
-        let lastActiveIndex = 0;
+        let currentStepIndex = 0;
+        let touchStartY = 0;
+        const SWIPE_THRESHOLD = 60;
 
-        function updateProcessStepFromScroll() {
-            if (!processSection || !mobileQuery.matches || tabs.length === 0) return;
+        function isProcessSectionActive() {
+            if (!processSection || !mobileQuery.matches) return false;
             const rect = processSection.getBoundingClientRect();
-            const viewportH = window.innerHeight;
-            const sectionH = rect.height;
-            // Progress 0 = section top at viewport top, 1 = section bottom at viewport bottom
-            const scrollRange = viewportH - sectionH;
-            const scrollProgress = scrollRange === 0 ? 0.5 : Math.max(0, Math.min(1, -rect.top / scrollRange));
-            const index = Math.min(tabs.length - 1, Math.floor(scrollProgress * tabs.length));
-            if (index !== lastActiveIndex) {
-                lastActiveIndex = index;
-                activateTab(tabs[index]);
+            const vh = window.innerHeight;
+            // Section is "stuck" and we're capturing: top at/near viewport top, section still visible
+            return rect.top <= 20 && rect.bottom > vh * 0.5;
+        }
+
+        function goToStep(index) {
+            currentStepIndex = Math.max(0, Math.min(index, tabs.length - 1));
+            activateTab(tabs[currentStepIndex]);
+        }
+
+        function handleWheel(e) {
+            if (!mobileQuery.matches || tabs.length === 0 || !isProcessSectionActive()) return;
+            const delta = e.deltaY;
+            if (delta > 0) {
+                if (currentStepIndex < tabs.length - 1) {
+                    e.preventDefault();
+                    goToStep(currentStepIndex + 1);
+                } else {
+                    // Step 5: one controlled scroll so section can leave view
+                    e.preventDefault();
+                    window.scrollBy(0, window.innerHeight * 0.6);
+                }
+            } else if (delta < 0) {
+                if (currentStepIndex > 0) {
+                    e.preventDefault();
+                    goToStep(currentStepIndex - 1);
+                }
             }
         }
 
-        function onProcessScroll() {
+        function handleTouchStart(e) {
             if (!mobileQuery.matches) return;
-            if (scrollRaf) cancelAnimationFrame(scrollRaf);
-            scrollRaf = requestAnimationFrame(() => {
-                scrollRaf = 0;
-                updateProcessStepFromScroll();
-            });
+            touchStartY = e.touches[0].clientY;
         }
 
-        window.addEventListener('scroll', onProcessScroll, { passive: true });
-        window.addEventListener('resize', () => {
-            if (!mobileQuery.matches) lastActiveIndex = -1;
-            onProcessScroll();
-        });
-        // Initial run in case section is already in view (e.g. on load)
-        setTimeout(updateProcessStepFromScroll, 100);
+        function handleTouchMove(e) {
+            if (!mobileQuery.matches || tabs.length === 0 || !isProcessSectionActive()) return;
+            const y = e.touches[0].clientY;
+            const delta = touchStartY - y;
+            // At step 5 swiping down: allow scroll; otherwise capture scroll in section
+            const atLastStepSwipingDown = currentStepIndex === tabs.length - 1 && delta > 0;
+            if (!atLastStepSwipingDown) e.preventDefault();
+            if (Math.abs(delta) < SWIPE_THRESHOLD) return;
+            if (delta > 0) {
+                if (currentStepIndex < tabs.length - 1) {
+                    goToStep(currentStepIndex + 1);
+                    touchStartY = y;
+                }
+            } else {
+                if (currentStepIndex > 0) {
+                    goToStep(currentStepIndex - 1);
+                    touchStartY = y;
+                }
+            }
+        }
+
+        window.addEventListener('wheel', handleWheel, { passive: false });
+        processSection?.addEventListener('touchstart', handleTouchStart, { passive: true });
+        processSection?.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+        // When section enters view on mobile, sync step to 0 (in case user scrolled back up)
+        const processObserver = new IntersectionObserver((entries) => {
+            if (!mobileQuery.matches) return;
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && entry.boundingClientRect.top > 0) {
+                    currentStepIndex = 0;
+                    activateTab(tabs[0]);
+                }
+            });
+        }, { threshold: 0.1 });
+        processSection && processObserver.observe(processSection);
     }
 
     // --- 3D Tilt Effect (Subtler) ---

@@ -350,6 +350,7 @@ ul {
     display: inline-block;
     position: relative;
     padding: 0 0.2rem;
+    font-size: clamp(2.45rem, 5.2vw, 3.6rem);
 }
 
 .hero-title-line::after {

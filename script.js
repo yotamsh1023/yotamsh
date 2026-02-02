@@ -164,13 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentStepIndex = 0;
         let touchStartY = 0;
         const SWIPE_THRESHOLD = 60;
+        const LOG = (location, message, data, hypothesisId) => {
+            // #region agent log
+            fetch('http://127.0.0.1:7244/ingest/494a8863-d12b-44fe-aabc-1dbf722a996e', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ location, message, data: data || {}, timestamp: Date.now(), sessionId: 'debug-session', hypothesisId }) }).catch(() => {});
+            // #endregion
+        };
 
         function isProcessSectionActive() {
             if (!processSection || !mobileQuery.matches) return false;
             const rect = processSection.getBoundingClientRect();
             const vh = window.innerHeight;
-            // Section is "stuck" and we're capturing: top at/near viewport top, section still visible
-            return rect.top <= 20 && rect.bottom > vh * 0.5;
+            // Capture when section is in upper half of viewport so we freeze before content overlaps
+            const active = rect.top <= vh * 0.55 && rect.bottom > vh * 0.25;
+            return active;
         }
 
         function goToStep(index) {
@@ -179,23 +185,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function handleWheel(e) {
-            if (!mobileQuery.matches || tabs.length === 0 || !isProcessSectionActive()) return;
+            const rect = processSection?.getBoundingClientRect();
+            const vh = window.innerHeight;
+            const isActive = isProcessSectionActive();
+            // #region agent log
+            LOG('script.js:handleWheel', 'wheel', { mobile: mobileQuery.matches, rectTop: rect?.top, rectBottom: rect?.bottom, vh, isActive, currentStepIndex, deltaY: e.deltaY }, 'H3');
+            // #endregion
+            if (!mobileQuery.matches || tabs.length === 0 || !isActive) return;
             const delta = e.deltaY;
-            if (delta > 0) {
+            const WHEEL_THRESHOLD = 40;
+            let prevented = false;
+            if (delta > WHEEL_THRESHOLD) {
                 if (currentStepIndex < tabs.length - 1) {
                     e.preventDefault();
+                    prevented = true;
                     goToStep(currentStepIndex + 1);
                 } else {
                     // Step 5: one controlled scroll so section can leave view
                     e.preventDefault();
+                    prevented = true;
                     window.scrollBy(0, window.innerHeight * 0.6);
                 }
-            } else if (delta < 0) {
+            } else if (delta < -WHEEL_THRESHOLD) {
                 if (currentStepIndex > 0) {
                     e.preventDefault();
+                    prevented = true;
                     goToStep(currentStepIndex - 1);
                 }
             }
+            // #region agent log
+            LOG('script.js:handleWheel', 'after', { prevented, currentStepIndex }, 'H4');
+            // #endregion
         }
 
         function handleTouchStart(e) {
@@ -203,8 +223,17 @@ document.addEventListener('DOMContentLoaded', () => {
             touchStartY = e.touches[0].clientY;
         }
 
+        let touchLogLast = 0;
         function handleTouchMove(e) {
-            if (!mobileQuery.matches || tabs.length === 0 || !isProcessSectionActive()) return;
+            const isActive = isProcessSectionActive();
+            // #region agent log
+            if (mobileQuery.matches && processSection && Date.now() - touchLogLast > 400) {
+                touchLogLast = Date.now();
+                const rect = processSection.getBoundingClientRect();
+                LOG('script.js:touchmove', 'touch', { isActive, rectTop: rect.top, currentStepIndex, delta: touchStartY - e.touches[0].clientY }, 'H3');
+            }
+            // #endregion
+            if (!mobileQuery.matches || tabs.length === 0 || !isActive) return;
             const y = e.touches[0].clientY;
             const delta = touchStartY - y;
             // At step 5 swiping down: allow scroll; otherwise capture scroll in section
@@ -227,6 +256,18 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('wheel', handleWheel, { passive: false });
         processSection?.addEventListener('touchstart', handleTouchStart, { passive: true });
         processSection?.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+        let scrollLogLast = 0;
+        window.addEventListener('scroll', () => {
+            if (!mobileQuery.matches || !processSection) return;
+            const now = Date.now();
+            if (now - scrollLogLast < 300) return;
+            scrollLogLast = now;
+            const rect = processSection.getBoundingClientRect();
+            // #region agent log
+            LOG('script.js:scroll', 'scroll', { rectTop: rect.top, rectBottom: rect.bottom, scrollY: window.scrollY || window.pageYOffset, vh: window.innerHeight }, 'H1');
+            // #endregion
+        }, { passive: true });
 
         // When section enters view on mobile, sync step to 0 (in case user scrolled back up)
         const processObserver = new IntersectionObserver((entries) => {

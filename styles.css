@@ -682,7 +682,7 @@ ul {
 
 /* Responsive Tabs */
 @media (max-width: 768px) {
-    /* Sticky process section: stays in view until user reaches step 5 and scrolls */
+    /* Sticky process section: stays on top until step 5; content below must not paint over it */
     .timeline-section {
         position: sticky;
         top: 0;
@@ -690,6 +690,8 @@ ul {
         display: flex;
         align-items: center;
         padding: var(--spacing-md) 0;
+        z-index: 5;
+        background: var(--bg-dark);
     }
 
     .timeline-section .timeline-container {

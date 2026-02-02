@@ -72,7 +72,7 @@
                 </div>
                 
                 <!-- Button moved after testimonials -->
-                <div style="text-align: center; margin-top: 2rem;">
+                <div class="hero-cta-wrapper">
                     <a href="#how-it-works" class="hero-widget-btn hero-widget-btn--square">נו יותם אז איך זה עובד?</a>
                 </div>
             </div>
@@ -84,12 +84,11 @@
     </header>
 
     <!-- Video Testimonial: Ohad (after testimonial quotes) -->
-    <section class="video-section">
+    <section class="video-section video-section--ohad">
         <div class="container split-layout video-layout">
             <!-- Right Side: Text -->
             <div class="video-content">
-                <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">טעימה קטנה ממה שיש ללקוח להגיד
-                </h2>
+                <h2 class="section-title ohad-video-title">טעימה קטנה ממה שיש ללקוח להגיד</h2>
                 <p class="testimonial-quote">
                     ״חוסך לי ים של זמן, ים של כסף ובעיקר התעסקות מתישה עם לקוחות ועם דברים טכניים, שפשוט כבעל עסק לא בא
                     לי להתעסק איתם״
@@ -236,7 +235,7 @@
     </div>
 
     <!-- Shoval Video Testimonial (same design as Ohad) -->
-    <section class="video-section" aria-labelledby="shoval-video-title">
+    <section class="video-section video-section--shoval-main" aria-labelledby="shoval-video-title">
         <div class="container">
             <h2 class="section-title shoval-title" id="shoval-video-title">
                 שובל כבר הבין את הכוח של האוטומציות
@@ -312,10 +311,14 @@
                     <span class="before-after-label before-label">לפני</span>
                     <div class="before-cards-wrap">
                         <div class="before-card">
-                            <img src="assets/before-google-sheets.png" alt="ניהול לידים בגוגל שיטס – מעקב ידני, טבלאות מפוזרות">
+                            <button type="button" class="before-after-zoom" data-full="assets/before-google-sheets.png" aria-label="הגדל תמונת לפני: ניהול לידים בגוגל שיטס">
+                                <img src="assets/before-google-sheets.png" alt="ניהול לידים בגוגל שיטס – מעקב ידני, טבלאות מפוזרות">
+                            </button>
                         </div>
                         <div class="before-card">
-                            <img src="assets/before-google-sheets-2.png" alt="ניהול לידים בגוגל שיטס – תהליך ידני וסטטוסים בטבלה">
+                            <button type="button" class="before-after-zoom" data-full="assets/before-google-sheets-2.png" aria-label="הגדל תמונת לפני: ניהול לידים בגוגל שיטס">
+                                <img src="assets/before-google-sheets-2.png" alt="ניהול לידים בגוגל שיטס – תהליך ידני וסטטוסים בטבלה">
+                            </button>
                         </div>
                     </div>
                     <p class="before-after-caption">גוגל שיטס, אקסלים, העתק-הדבק – הכל עליך</p>
@@ -327,10 +330,14 @@
                     <span class="before-after-label after-label">אחרי</span>
                     <div class="after-cards-wrap">
                         <div class="after-card">
-                            <img src="assets/after-crm.png" alt="מערכת CRM – לידים, פגישות וזימונים במקום אחד">
+                            <button type="button" class="before-after-zoom" data-full="assets/after-crm.png" aria-label="הגדל תמונת אחרי: מערכת CRM">
+                                <img src="assets/after-crm.png" alt="מערכת CRM – לידים, פגישות וזימונים במקום אחד">
+                            </button>
                         </div>
                         <div class="after-card">
-                            <img src="assets/after-crm-2.png" alt="מערכת CRM – ניהול לידים, קמפיינים ומקורות הגעה">
+                            <button type="button" class="before-after-zoom" data-full="assets/after-crm-2.png" aria-label="הגדל תמונת אחרי: מערכת CRM">
+                                <img src="assets/after-crm-2.png" alt="מערכת CRM – ניהול לידים, קמפיינים ומקורות הגעה">
+                            </button>
                         </div>
                     </div>
                     <p class="before-after-caption">מערכת CRM – הכל במקום אחד, עובד בשבילך</p>
@@ -573,6 +580,12 @@
         <p><a href="privacy.html">מדיניות פרטיות</a> · <a href="accessibility-statement.html">הצהרת נגישות</a></p>
         <p>© 2026 Yotamation. כל הזכויות שמורות.</p>
     </footer>
+
+    <!-- Before/After Lightbox -->
+    <div class="lightbox-overlay" id="before-after-lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+        <button type="button" class="lightbox-close" aria-label="סגור תצוגה מוגדלת">×</button>
+        <img class="lightbox-image" alt="">
+    </div>
 
     <!-- וידג'ט נגישות -->
     <div class="a11y-widget" role="region" aria-label="נגישות">

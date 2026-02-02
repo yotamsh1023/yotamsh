@@ -81,6 +81,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Before/After Lightbox
+    const lightbox = document.getElementById('before-after-lightbox');
+    const lightboxImage = lightbox?.querySelector('.lightbox-image');
+    const lightboxClose = lightbox?.querySelector('.lightbox-close');
+    const zoomButtons = document.querySelectorAll('.before-after-zoom');
+
+    const openLightbox = (src, alt) => {
+        if (!lightbox || !lightboxImage) return;
+        lightboxImage.src = src;
+        lightboxImage.alt = alt || '';
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
+    };
+
+    const closeLightbox = () => {
+        if (!lightbox || !lightboxImage) return;
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lightbox-open');
+        lightboxImage.src = '';
+        lightboxImage.alt = '';
+    };
+
+    zoomButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const img = button.querySelector('img');
+            const src = button.getAttribute('data-full') || img?.getAttribute('src');
+            if (!src) return;
+            openLightbox(src, img?.getAttribute('alt') || '');
+        });
+    });
+
+    lightboxClose?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeLightbox();
+    });
+
     // Process Tabs (נגישות: ARIA + מקלדת חצים ב-RTL)
     const tabs = Array.from(document.querySelectorAll('.tab-item'));
     const contents = document.querySelectorAll('.tab-content');

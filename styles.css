@@ -234,6 +234,12 @@ ul {
     margin-top: 3rem;
 }
 
+.hero-cta-wrapper {
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .hero-widget-btn {
     display: inline-block;
     padding: 1rem 1.75rem;
@@ -883,6 +889,21 @@ ul {
     box-shadow: none;
 }
 
+.before-after-zoom {
+    display: block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: zoom-in;
+}
+
+.before-after-zoom img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 .before-card:hover {
     transform: translateY(-4px);
 }
@@ -921,6 +942,56 @@ ul {
     display: block;
     border-radius: 0;
     box-shadow: none;
+}
+
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 12, 18, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    z-index: 2000;
+    padding: 2rem 1rem;
+}
+
+.lightbox-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-image {
+    max-width: min(1200px, 92vw);
+    max-height: 86vh;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.lightbox-open {
+    overflow: hidden;
 }
 
 .after-card:hover {
@@ -1892,6 +1963,10 @@ ul {
     background: transparent;
 }
 
+.video-section--ohad {
+    padding-top: 2rem;
+}
+
 .shoval-title {
     text-align: center;
     margin-bottom: 2rem;
@@ -1911,13 +1986,34 @@ ul {
     position: relative;
 }
 
+.video-section--ohad .video-container-wrapper {
+    flex: 0 0 38%;
+    margin-left: 2rem;
+}
+
+.video-section--shoval-main .video-container-wrapper {
+    flex: 0 0 45%;
+}
+
+.video-section--shoval-main .video-frame {
+    margin-right: 10rem;
+}
+
+.ohad-video-title {
+    text-align: right;
+    width: 100%;
+    font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+    margin-bottom: 1.0rem;
+}
+
 .video-frame {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     border: 1px solid #e0e0e0;
     background: #000;
-    aspect-ratio: 9 / 16; /* Shorts are vertical */
+    aspect-ratio: 9 / 16;
+    max-height: 520px;
 }
 
 .video-frame video {
@@ -1944,7 +2040,7 @@ ul {
     color: var(--text-main);
     font-style: italic;
     border-right: 4px solid var(--accent-blue);
-    padding-right: 1.5rem;
+    padding-right: 2%;
     margin: 1.5rem 0;
     background: rgba(68, 98, 181, 0.05);
     padding: 1rem 1.5rem 1rem 0;
@@ -1963,6 +2059,7 @@ ul {
         flex: 1;
         width: 100%;
         max-width: 500px;
+        margin-left: 0;
         /* Limit width on mobile */
     }
 
@@ -1972,6 +2069,9 @@ ul {
     }
 
     .video-content .section-title {
+        text-align: center !important;
+    }
+    .ohad-video-title {
         text-align: center !important;
     }
 
@@ -1994,6 +2094,13 @@ ul {
     }
     .testimonial-quote {
         font-size: 1.05rem;
+    }
+    .ohad-video-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    .video-frame {
+        max-height: 420px;
     }
     .shoval-title {
         font-size: 1.5rem;
@@ -2044,6 +2151,8 @@ ul {
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
     background: #000;
+    aspect-ratio: 9 / 16;
+    max-height: 100px;
 }
 
 .shoval-video-wrap video {
@@ -2134,6 +2243,7 @@ ul {
     }
     .shoval-video-wrap {
         max-width: 100%;
+        max-height: 420px;
     }
     .shoval-quote-widget {
         max-width: 100%;

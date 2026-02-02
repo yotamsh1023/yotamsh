@@ -142,8 +142,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (panel) panel.classList.add('active');
         }
 
+        const processPrev = document.getElementById('process-step-prev');
+        const processNext = document.getElementById('process-step-next');
+        function updateProcessArrows() {
+            if (!processPrev || !processNext) return;
+            const current = tabs.findIndex(t => t.classList.contains('active'));
+            processPrev.disabled = current <= 0;
+            processNext.disabled = current < 0 || current >= tabs.length - 1;
+        }
         tabs.forEach((tab, i) => {
-            tab.addEventListener('click', () => activateTab(tab));
+            tab.addEventListener('click', () => {
+                activateTab(tab);
+                updateProcessArrows();
+            });
             tab.addEventListener('keydown', (e) => {
                 let next = null;
                 if (e.key === 'ArrowLeft') next = tabs[i + 1];  // RTL: שמאלה = הבא
@@ -154,132 +165,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
                     activateTab(next);
                     next.focus();
+                    updateProcessArrows();
                 }
             });
         });
 
-        // Mobile only: sticky section – stay on section until step 5; each scroll/swipe advances one step
-        const processSection = document.getElementById('how-it-works');
-        const mobileQuery = window.matchMedia('(max-width: 768px)');
-        let currentStepIndex = 0;
-        let touchStartY = 0;
-        const SWIPE_THRESHOLD = 60;
-        const LOG = (location, message, data, hypothesisId) => {
-            // #region agent log
-            fetch('http://127.0.0.1:7244/ingest/494a8863-d12b-44fe-aabc-1dbf722a996e', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ location, message, data: data || {}, timestamp: Date.now(), sessionId: 'debug-session', hypothesisId }) }).catch(() => {});
-            // #endregion
-        };
-
-        function isProcessSectionActive() {
-            if (!processSection || !mobileQuery.matches) return false;
-            const rect = processSection.getBoundingClientRect();
-            const vh = window.innerHeight;
-            // Only capture when section is stuck at top (user has scrolled to it); don't capture when section is still below
-            const active = rect.top <= 60 && rect.bottom > vh * 0.4;
-            return active;
-        }
-
-        function goToStep(index) {
-            currentStepIndex = Math.max(0, Math.min(index, tabs.length - 1));
-            activateTab(tabs[currentStepIndex]);
-        }
-
-        function handleWheel(e) {
-            const rect = processSection?.getBoundingClientRect();
-            const vh = window.innerHeight;
-            const isActive = isProcessSectionActive();
-            // #region agent log
-            LOG('script.js:handleWheel', 'wheel', { mobile: mobileQuery.matches, rectTop: rect?.top, rectBottom: rect?.bottom, vh, isActive, currentStepIndex, deltaY: e.deltaY }, 'H3');
-            // #endregion
-            if (!mobileQuery.matches || tabs.length === 0 || !isActive) return;
-            const delta = e.deltaY;
-            const WHEEL_THRESHOLD = 40;
-            let prevented = false;
-            if (delta > WHEEL_THRESHOLD) {
-                if (currentStepIndex < tabs.length - 1) {
-                    e.preventDefault();
-                    prevented = true;
-                    goToStep(currentStepIndex + 1);
-                } else {
-                    // Step 5: one controlled scroll so section can leave view
-                    e.preventDefault();
-                    prevented = true;
-                    window.scrollBy(0, window.innerHeight * 0.6);
-                }
-            } else if (delta < -WHEEL_THRESHOLD) {
-                if (currentStepIndex > 0) {
-                    e.preventDefault();
-                    prevented = true;
-                    goToStep(currentStepIndex - 1);
-                }
-            }
-            // #region agent log
-            LOG('script.js:handleWheel', 'after', { prevented, currentStepIndex }, 'H4');
-            // #endregion
-        }
-
-        function handleTouchStart(e) {
-            if (!mobileQuery.matches) return;
-            touchStartY = e.touches[0].clientY;
-        }
-
-        let touchLogLast = 0;
-        function handleTouchMove(e) {
-            const isActive = isProcessSectionActive();
-            // #region agent log
-            if (mobileQuery.matches && processSection && Date.now() - touchLogLast > 400) {
-                touchLogLast = Date.now();
-                const rect = processSection.getBoundingClientRect();
-                LOG('script.js:touchmove', 'touch', { isActive, rectTop: rect.top, currentStepIndex, delta: touchStartY - e.touches[0].clientY }, 'H3');
-            }
-            // #endregion
-            if (!mobileQuery.matches || tabs.length === 0 || !isActive) return;
-            const y = e.touches[0].clientY;
-            const delta = touchStartY - y;
-            // At step 5 swiping down: allow scroll; otherwise capture scroll in section
-            const atLastStepSwipingDown = currentStepIndex === tabs.length - 1 && delta > 0;
-            if (!atLastStepSwipingDown) e.preventDefault();
-            if (Math.abs(delta) < SWIPE_THRESHOLD) return;
-            if (delta > 0) {
-                if (currentStepIndex < tabs.length - 1) {
-                    goToStep(currentStepIndex + 1);
-                    touchStartY = y;
-                }
-            } else {
-                if (currentStepIndex > 0) {
-                    goToStep(currentStepIndex - 1);
-                    touchStartY = y;
-                }
-            }
-        }
-
-        window.addEventListener('wheel', handleWheel, { passive: false });
-        processSection?.addEventListener('touchstart', handleTouchStart, { passive: true });
-        processSection?.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-        let scrollLogLast = 0;
-        window.addEventListener('scroll', () => {
-            if (!mobileQuery.matches || !processSection) return;
-            const now = Date.now();
-            if (now - scrollLogLast < 300) return;
-            scrollLogLast = now;
-            const rect = processSection.getBoundingClientRect();
-            // #region agent log
-            LOG('script.js:scroll', 'scroll', { rectTop: rect.top, rectBottom: rect.bottom, scrollY: window.scrollY || window.pageYOffset, vh: window.innerHeight }, 'H1');
-            // #endregion
-        }, { passive: true });
-
-        // When section enters view on mobile, sync step to 0 (in case user scrolled back up)
-        const processObserver = new IntersectionObserver((entries) => {
-            if (!mobileQuery.matches) return;
-            entries.forEach((entry) => {
-                if (entry.isIntersecting && entry.boundingClientRect.top > 0) {
-                    currentStepIndex = 0;
-                    activateTab(tabs[0]);
+        // Mobile only: prev/next arrows to slide between steps
+        if (processPrev && processNext && tabs.length > 0) {
+            processPrev.addEventListener('click', () => {
+                const current = tabs.findIndex(t => t.classList.contains('active'));
+                if (current > 0) {
+                    activateTab(tabs[current - 1]);
+                    updateProcessArrows();
                 }
             });
-        }, { threshold: 0.1 });
-        processSection && processObserver.observe(processSection);
+            processNext.addEventListener('click', () => {
+                const current = tabs.findIndex(t => t.classList.contains('active'));
+                if (current >= 0 && current < tabs.length - 1) {
+                    activateTab(tabs[current + 1]);
+                    updateProcessArrows();
+                }
+            });
+            updateProcessArrows();
+        }
     }
 
     // --- 3D Tilt Effect (Subtler) ---

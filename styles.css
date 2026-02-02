@@ -680,22 +680,47 @@ ul {
     line-height: 1.6;
 }
 
-/* Responsive Tabs */
+/* Process step arrows – mobile only */
+.process-step-arrows {
+    display: none;
+}
+
 @media (max-width: 768px) {
-    /* Sticky process section: stays on top until step 5; content below must not paint over it */
-    .timeline-section {
-        position: sticky;
-        top: 0;
-        min-height: 100vh;
+    .process-step-arrows {
         display: flex;
+        justify-content: center;
         align-items: center;
-        padding: var(--spacing-md) 0;
-        z-index: 5;
-        background: var(--bg-dark);
+        gap: 1.5rem;
+        margin: 1rem 0 1.5rem;
     }
 
-    .timeline-section .timeline-container {
-        width: 100%;
+    .process-step-arrow {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid var(--accent-blue);
+        background: white;
+        color: var(--accent-blue);
+        font-size: 1.25rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .process-step-arrow:hover,
+    .process-step-arrow:focus {
+        background: var(--accent-blue);
+        color: white;
+        transform: scale(1.05);
+    }
+
+    .process-step-arrow:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
     }
 
     .process-tabs {

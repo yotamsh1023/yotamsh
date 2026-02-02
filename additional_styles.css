@@ -50,8 +50,8 @@
     box-shadow: 0 4px 20px rgba(68, 98, 181, 0.08);
     border-radius: 24px;
     padding: 1.25rem 1.75rem;
-    min-width: 480px;
-    max-width: 520px;
+    min-width: clamp(280px, 78vw, 420px);
+    max-width: clamp(320px, 82vw, 520px);
     direction: rtl;
     text-align: right;
     flex-shrink: 0;
@@ -126,8 +126,8 @@
     }
 
     .hero-testimonial-card {
-        min-width: 320px;
-        max-width: 360px;
+        min-width: clamp(260px, 86vw, 360px);
+        max-width: clamp(280px, 90vw, 380px);
         padding: 1rem 1.25rem;
         border-radius: 20px;
         gap: 0.75rem;
@@ -186,7 +186,7 @@
 
 /* Hero Tagline - intro above headline (bold, black, prominent) */
 .hero-tagline {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 2.6vw, 1.5rem);
     font-weight: 700;
     color: #000 !important;
     margin: 0 0 1.25rem 0;

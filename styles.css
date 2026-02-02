@@ -2262,6 +2262,7 @@ body.lightbox-open {
     .shoval-video-side {
         order: 1;
         align-items: center;
+        width: 100%;
     }
     .shoval-widget-side {
         order: 2;
@@ -2270,6 +2271,7 @@ body.lightbox-open {
         width: 100%;
         max-width: 320px;
         margin: 0 auto;
+        margin-inline: auto;
         max-height: 420px;
     }
     .shoval-quote-widget {

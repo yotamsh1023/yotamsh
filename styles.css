@@ -691,7 +691,7 @@ ul {
         justify-content: center;
         align-items: center;
         gap: 1.5rem;
-        margin: 1rem 0 1.5rem;
+        margin-top: 1.5rem;
     }
 
     .process-step-arrow {
@@ -731,6 +731,19 @@ ul {
         align-items: center;
     }
 
+    /* Small lines between icons (mobile) */
+    .process-tabs .tab-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        left: -0.55rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 2px;
+        background: rgba(68, 98, 181, 0.35);
+        border-radius: 1px;
+    }
+
     .glowing-line {
         display: none;
     }
@@ -746,8 +759,13 @@ ul {
     }
 
     .process-content-area {
+        flex-direction: column;
         padding: 1.5rem;
         min-height: 0;
+    }
+
+    .process-content-area .tab-content.active {
+        flex: 1 1 auto;
     }
 
     .tab-content h3 {

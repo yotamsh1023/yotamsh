@@ -66,6 +66,21 @@ body {
     background-attachment: fixed;
 }
 
+@media (max-width: 768px) {
+    body {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 0.92rem;
+    }
+    .section-title {
+        font-size: 1.6rem;
+    }
+}
+
 /* נגישות ת"י 5568 – דילוג לתוכן ופוקוס נראה */
 .skip-link {
     position: absolute;
@@ -1518,6 +1533,29 @@ ul {
     margin-bottom: 1rem;
 }
 
+@media (max-width: 768px) {
+    .why-me-section {
+        padding: 4rem 0;
+    }
+    .about-split-layout {
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    .profile-photo-wrapper {
+        max-width: 320px;
+    }
+    .about-content .lead-text {
+        font-size: 1.5rem;
+    }
+    .about-content h3 {
+        font-size: 1.2rem;
+    }
+    .about-content p {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+}
+
 @media (max-width: 900px) {
     .about-split-layout {
         flex-direction: column;
@@ -1556,6 +1594,16 @@ ul {
     text-align: center;
     font-size: 1.1rem;
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+    .security-section .section-title,
+    .why-me-section .section-title {
+        text-align: center !important;
+    }
+    .security-section {
+        padding: 4rem 0;
+    }
 }
 
 /* --- Problem Section (Redesigned) --- */
@@ -1660,6 +1708,41 @@ ul {
     font-weight: 500;
 }
 
+@media (max-width: 768px) {
+    .problem-section {
+        padding: 4rem 0;
+    }
+    .split-layout {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .problem-content {
+        text-align: right;
+    }
+    .highlight-text {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    .pain-points-list li {
+        padding-right: 1.25rem;
+        font-size: 1rem;
+    }
+    .closing-text {
+        font-size: 1.05rem;
+    }
+    .problem-visuals {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+    .problem-list-card {
+        padding: 1.1rem;
+        gap: 1rem;
+    }
+    .problem-list-card h3 {
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 900px) {
     .split-layout {
         flex-direction: column;
@@ -1696,6 +1779,11 @@ ul {
     padding: var(--spacing-xl) 0;
     position: relative;
     background: transparent;
+}
+
+.shoval-title {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .video-layout {
@@ -1785,6 +1873,10 @@ ul {
     }
     .testimonial-quote {
         font-size: 1.05rem;
+    }
+    .shoval-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
     }
 }
 

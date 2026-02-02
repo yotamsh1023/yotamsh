@@ -698,6 +698,25 @@ ul {
     background: transparent;
 }
 
+.problem-lead-list {
+    list-style: disc;
+    padding-right: 1.25rem;
+    margin: 0 0 1.25rem;
+    text-align: right;
+}
+
+.problem-lead-list li {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+}
+
+.problem-lead-list li:last-child {
+    margin-bottom: 0;
+}
+
 .problem-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1775,6 +1794,13 @@ ul {
         margin-bottom: 0.75rem !important;
         line-height: 1.2;
     }
+    .problem-lead-list {
+        padding-right: 1rem;
+        margin-bottom: 1rem;
+    }
+    .problem-lead-list li {
+        font-size: clamp(1.4rem, 5vw, 1.8rem);
+    }
     .problem-content p {
         font-size: 0.95rem;
     }
@@ -1931,6 +1957,7 @@ ul {
     }
 
     .video-container-wrapper {
+        order: 1;
         flex: 1;
         width: 100%;
         max-width: 500px;
@@ -1938,6 +1965,7 @@ ul {
     }
 
     .video-content {
+        order: 2;
         text-align: center;
     }
 

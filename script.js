@@ -174,8 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!processSection || !mobileQuery.matches) return false;
             const rect = processSection.getBoundingClientRect();
             const vh = window.innerHeight;
-            // Capture when section is in upper half of viewport so we freeze before content overlaps
-            const active = rect.top <= vh * 0.55 && rect.bottom > vh * 0.25;
+            // Only capture when section is stuck at top (user has scrolled to it); don't capture when section is still below
+            const active = rect.top <= 60 && rect.bottom > vh * 0.4;
             return active;
         }
 

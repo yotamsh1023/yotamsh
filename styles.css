@@ -416,11 +416,11 @@ ul {
         padding: 2.5rem 0.75rem;
     }
     .hero-title {
-        font-size: clamp(1.9rem, 6vw, 2.3rem);
+        font-size: clamp(1.3rem, 6vw, 1.5rem);
     }
     .hero-title-line {
         white-space: nowrap;
-        font-size: clamp(1.15rem, 5.8vw, 1.55rem);
+        font-size: clamp(1.7rem, 5.8vw, 2rem);
     }
     .hero-title-line::after {
         height: 0.65em;

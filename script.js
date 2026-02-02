@@ -157,6 +157,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // Mobile only: auto-advance process steps based on scroll position in section
+        const processSection = document.getElementById('how-it-works');
+        const mobileQuery = window.matchMedia('(max-width: 768px)');
+        let scrollRaf = 0;
+        let lastActiveIndex = 0;
+
+        function updateProcessStepFromScroll() {
+            if (!processSection || !mobileQuery.matches || tabs.length === 0) return;
+            const rect = processSection.getBoundingClientRect();
+            const viewportH = window.innerHeight;
+            const sectionH = rect.height;
+            // Progress 0 = section top at viewport top, 1 = section bottom at viewport bottom
+            const scrollRange = viewportH - sectionH;
+            const scrollProgress = scrollRange === 0 ? 0.5 : Math.max(0, Math.min(1, -rect.top / scrollRange));
+            const index = Math.min(tabs.length - 1, Math.floor(scrollProgress * tabs.length));
+            if (index !== lastActiveIndex) {
+                lastActiveIndex = index;
+                activateTab(tabs[index]);
+            }
+        }
+
+        function onProcessScroll() {
+            if (!mobileQuery.matches) return;
+            if (scrollRaf) cancelAnimationFrame(scrollRaf);
+            scrollRaf = requestAnimationFrame(() => {
+                scrollRaf = 0;
+                updateProcessStepFromScroll();
+            });
+        }
+
+        window.addEventListener('scroll', onProcessScroll, { passive: true });
+        window.addEventListener('resize', () => {
+            if (!mobileQuery.matches) lastActiveIndex = -1;
+            onProcessScroll();
+        });
+        // Initial run in case section is already in view (e.g. on load)
+        setTimeout(updateProcessStepFromScroll, 100);
     }
 
     // --- 3D Tilt Effect (Subtler) ---

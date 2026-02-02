@@ -424,7 +424,7 @@ ul {
         font-size: clamp(1.5rem, 5.8vw, 1.7rem);
     }
     .hero-title-line::after {
-        height: 0.65em;
+        height: 0.5rem;
     }
     .hero-buttons {
         gap: 0.75rem;

@@ -194,6 +194,18 @@
     letter-spacing: -0.01em;
 }
 
+@media (max-width: 768px) {
+    .hero-tagline {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-tagline {
+        font-size: 2.1rem;
+    }
+}
+
 /* Text Accent - Orange emphasis within headline */
 .text-accent {
     color: #ff6b35;

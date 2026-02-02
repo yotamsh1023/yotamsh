@@ -435,6 +435,12 @@ ul {
         width: 100%;
         max-width: 360px;
     }
+    .process-cta .btn-primary {
+        font-size: 0.95rem;
+        padding: 0.85rem 1.25rem;
+        white-space: nowrap;
+        width: auto;
+    }
 }
 
 /* 3D Floating Screens Area - 3 photos in a row */

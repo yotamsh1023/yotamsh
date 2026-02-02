@@ -1719,6 +1719,20 @@ ul {
     .problem-content {
         text-align: right;
     }
+    .problem-section > .container > .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+        text-align: center;
+    }
+    /* This one has inline styles; override for mobile */
+    .problem-content .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 0.75rem !important;
+        line-height: 1.2;
+    }
+    .problem-content p {
+        font-size: 0.95rem;
+    }
     .highlight-text {
         font-size: 1.2rem;
         margin-bottom: 1rem;
@@ -1737,8 +1751,32 @@ ul {
     .problem-list-card {
         padding: 1.1rem;
         gap: 1rem;
+        justify-content: space-between;
+    }
+    .problem-list-card .card-content {
+        text-align: right;
+        flex: 1;
+    }
+    .problem-list-card .card-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.25rem;
+        flex-shrink: 0;
     }
     .problem-list-card h3 {
+        font-size: 1rem;
+    }
+    /* Remove “slide” interaction on touch */
+    .problem-list-card:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .highlight-text {
+        font-size: 1.1rem;
+    }
+    .closing-text {
         font-size: 1rem;
     }
 }

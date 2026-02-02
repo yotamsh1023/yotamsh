@@ -1,39 +1,74 @@
-/* Hero Testimonial Card - Refined Design */
+/* Testimonial Slider - Auto-scrolling infinite loop */
+.testimonial-slider {
+    width: 100%;
+    overflow: hidden;
+    margin: 2rem 0;
+    position: relative;
+    padding: 1rem 0;
+    direction: ltr;
+}
+
+/* Temporarily disabled fades to debug
+.testimonial-slider::before,
+.testimonial-slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.testimonial-slider::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(240, 244, 255, 1) 0%, transparent 100%);
+}
+
+.testimonial-slider::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(240, 244, 255, 1) 0%, transparent 100%);
+}
+*/
+
+.testimonial-slider-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    direction: ltr;
+    will-change: transform;
+}
+
+/* Hero Testimonial Card - Slider Design */
 .hero-testimonial-card {
     display: flex;
     flex-direction: row;
-    /* Image on right in RTL */
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     background: rgba(255, 255, 255, 0.95);
-    /* White/Light background */
-    border: 1px solid rgba(68, 98, 181, 0.15);
-    /* Light blue border */
-    box-shadow: 0 4px 15px rgba(68, 98, 181, 0.1);
-    /* Soft shadow */
-    border-radius: 50px;
-    /* Pill shape */
-    padding: 0.8rem 1.5rem;
-    /* Smaller padding */
-    max-width: 650px;
-    /* Constrained width */
-    margin: 0 auto 2rem auto;
-    /* Centered, positioned above button */
+    border: 1px solid rgba(68, 98, 181, 0.12);
+    box-shadow: 0 4px 20px rgba(68, 98, 181, 0.08);
+    border-radius: 24px;
+    padding: 1.25rem 1.75rem;
+    min-width: 480px;
+    max-width: 520px;
     direction: rtl;
     text-align: right;
-    width: fit-content;
-    position: relative;
-    z-index: 10;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.hero-testimonial-card:hover {
+    box-shadow: 0 8px 32px rgba(68, 98, 181, 0.15);
+    transform: translateY(-2px);
 }
 
 .testimonial-avatar {
-    width: 50px;
-    /* Smaller image */
-    height: 50px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--accent-blue);
-    /* Site accent color */
+    border: 3px solid var(--accent-blue);
     flex-shrink: 0;
 }
 
@@ -41,28 +76,23 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.2rem;
+    gap: 0.5rem;
+    flex: 1;
 }
 
 .testimonial-text {
-    font-size: 0.95rem;
-    /* Smaller text */
+    font-size: 1rem;
     color: var(--text-main);
-    /* Dark text */
     font-weight: 400;
     margin: 0;
-    line-height: 1.3;
-    font-style: italic;
+    line-height: 1.5;
 }
 
 .testimonial-name {
-    font-size: 0.85rem;
-    /* Smaller name */
+    font-size: 0.9rem;
     color: var(--accent-blue);
-    /* Site accent color */
     margin: 0;
-    font-weight: 600;
-    letter-spacing: 0.3px;
+    font-weight: 700;
 }
 
 /* Enhanced CTA Button */
@@ -81,17 +111,39 @@
 }
 
 @media (max-width: 768px) {
-    .hero-testimonial-card {
-        flex-direction: column;
-        border-radius: 20px;
-        text-align: center;
-        padding: 1.2rem;
-        gap: 0.8rem;
-        max-width: 90%;
+    .testimonial-slider {
+        margin: 1.5rem 0;
     }
 
-    .testimonial-content {
-        align-items: center;
+    .testimonial-slider::before,
+    .testimonial-slider::after {
+        width: 40px;
+    }
+
+    .testimonial-slider-track {
+        gap: 1rem;
+        animation-duration: 20s;
+    }
+
+    .hero-testimonial-card {
+        min-width: 320px;
+        max-width: 360px;
+        padding: 1rem 1.25rem;
+        border-radius: 20px;
+        gap: 0.75rem;
+    }
+
+    .testimonial-avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .testimonial-text {
+        font-size: 0.9rem;
+    }
+
+    .testimonial-name {
+        font-size: 0.85rem;
     }
 
     .btn-primary {
@@ -132,14 +184,14 @@
     /* Text takes approx 60% */
 }
 
-/* Hero Tagline - Small text above headline */
+/* Hero Tagline - intro above headline (bold, black, prominent) */
 .hero-tagline {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--text-main);
-    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000 !important;
+    margin: 0 0 1.25rem 0;
     text-align: center;
-    opacity: 0.9;
+    letter-spacing: -0.01em;
 }
 
 /* Text Accent - Orange emphasis within headline */
@@ -147,4 +199,10 @@
     color: #ff6b35;
     /* Orange accent matching site theme */
     font-weight: 700;
+}
+
+/* Hero title – "ולקוחות." in black (matches headline weight) */
+.hero-title-black {
+    color: #000 !important;
+    font-weight: 900;
 }

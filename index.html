@@ -11,8 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=Outfit:wght@300;500;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="additional_styles.css">
+    <link rel="stylesheet" href="styles.css?v=8">
+    <link rel="stylesheet" href="additional_styles.css?v=14">
     <link rel="stylesheet" href="accessibility-widget.css">
 </head>
 
@@ -35,58 +35,129 @@
 
         <div class="hero-container">
             <div class="hero-content">
-                <p class="hero-tagline">יש לי מטרה אחת וזה לעזור לך</p>
+                <p class="hero-tagline">יש לי מטרה אחת והיא לעזור לך להפסיק להיתקע.  </p>
                 <h1 class="hero-title">
-                    להפסיק את הבלאגן והמרדף אחרי לידים, הודעות <span class="text-accent">ולקוחות.</span>
+                    הבנת שהעסק שלך מוכן לגדול. <br>
+                     השאלה היא המערכת שלך גם?<span class="hero-title-black"></span>
                 </h1>
                 <p class="hero-subtitle">
-                    ככה אתה מרוויח יותר כסף, יותר זמן וראש שקט מבלי לעבוד יותר.<br>
-                    אם נמאס לך להעתיק לידים ידנית, לענות כל היום להודעות ולשכוח מי אמור לחזור למי – הגעת למקום הנכון.
+                  אם נמאס לך לקוות שמשהו יקרה מעצמו, לקפוץ בין פתרונות זמניים ולהרגיש שאתה כל פעם שאתה על הקצה - הגיע הזמן לבנות מערכת שעובדת בשבילך.
                 </p>
-                <!-- Testimonial Cards -->
-                <div class="hero-testimonial-card">
-                    <img src="assets/shoval_Test.jpg" alt="שובל" class="testimonial-avatar">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"תחשוב שהייתי צריך כל ערב, להסתכל על היומן, לראות מי יש לי עוד
-                            יומיים ולהזכיר לו שאנחנו נפגשים והייתי מפספס"</p>
-                        <p class="testimonial-name">- שובל, מאלף כלבים ומומחה בטיפול בבעיות התנהגות</p>
+                <!-- Testimonial Slider (auto-scroll infinite loop) -->
+                <div class="testimonial-slider">
+                    <div class="testimonial-slider-track">
+                        <div class="hero-testimonial-card">
+                            <img src="assets/shoval_Test.jpg" alt="שובל" class="testimonial-avatar">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">"תחשוב שהייתי צריך כל ערב, להסתכל על היומן, לראות מי יש לי עוד יומיים ולהזכיר לו שאנחנו נפגשים והייתי מפספס"</p>
+                                <p class="testimonial-name">- שובל, מאלף כלבים ומומחה בטיפול בבעיות התנהגות</p>
+                            </div>
+                        </div>
+                        <div class="hero-testimonial-card">
+                            <img src="assets/yotam-hazan.png" alt="יותם חזן" class="testimonial-avatar">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">"שמע אחי הצלחתי אתמול בלילה לסיים את הכל וזה עובד נדיר, תודה רבה על העזרה"</p>
+                                <p class="testimonial-name">- יותם חזן, בעלים של חברת פרסום ודיגיטל</p>
+                            </div>
+                        </div>
+                        <div class="hero-testimonial-card">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234462b5'/%3E%3Ctext x='50' y='65' font-family='Heebo, sans-serif' font-size='48' font-weight='700' fill='white' text-anchor='middle'%3Eא%3C/text%3E%3C/svg%3E" alt="אריאל" class="testimonial-avatar">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">"קודם כול תודה ענקית על הכול אתה מקצוען אמיתי, זמין לכל שאלה ותמיד נותן מענה. באמת מרגיש שאתה איתי לאורך כל הדרך."</p>
+                                <p class="testimonial-name">- אריאל, בעל קבוצות וואטסאפ לפרסום משרות</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-testimonial-card">
-                    <img src="assets/yotam-hazan.png" alt="יותם חזן" class="testimonial-avatar">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"שמע אחי הצלחתי אתמול בלילה לסיים את הכל וזה עובד נדיר, תודה רבה על העזרה"</p>
-                        <p class="testimonial-name">- יותם חזן, בעלים של חברת פרסום ודיגיטל</p>
-                    </div>
-                </div>
-                <div class="hero-testimonial-card">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234462b5'/%3E%3Ctext x='50' y='65' font-family='Heebo, sans-serif' font-size='48' font-weight='700' fill='white' text-anchor='middle'%3Eא%3C/text%3E%3C/svg%3E" alt="אריאל" class="testimonial-avatar">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">קודם כול תודה ענקית על הכול אתה מקצוען אמיתי, זמין לכל שאלה ותמיד נותן מענה. באמת מרגיש שאתה איתי לאורך כל הדרך."</p>
-                        <p class="testimonial-name">- אריאל, בעל קבוצות וואטסאפ לפרסום משרות</p>
-                    </div>
+                
+                <!-- Button moved after testimonials -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#how-it-works" class="hero-widget-btn hero-widget-btn--square">נו יותם אז איך זה עובד?</a>
                 </div>
             </div>
 
-            <div class="hero-visuals">
-                <!-- Floating CRM Screenshots -->
-                <div class="floating-screen screen-1">
-                    <img src="assets/crm-1.jpg" alt="תצוגת מסך של מערכת CRM לניהול לידים">
-                </div>
-                <div class="floating-screen screen-2">
-                    <img src="assets/crm-2.jpg" alt="תצוגת מסך של מערכת CRM לניהול לקוחות">
-                </div>
-                <div class="floating-screen screen-3">
-                    <img src="assets/IMG_9700.jpg" alt="תצוגת מסך של מערכת CRM">
-                </div>
+            <div class="hero-buttons">
+                <!-- CTA moved below the process section -->
             </div>
-
-            <a href="#contact" class="btn-primary" style="margin-top: 3rem;">השאירו פרטים לשיחת התאמה</a>
         </div>
     </header>
 
-    <!-- Section 2: Process Timeline (Tabs) -->
-    <section class="timeline-section">
+    <!-- Video Testimonial: Ohad (after testimonial quotes) -->
+    <section class="video-section">
+        <div class="container split-layout video-layout">
+            <!-- Right Side: Text -->
+            <div class="video-content">
+                <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">טעימה קטנה ממה שיש ללקוח להגיד
+                </h2>
+                <p class="testimonial-quote">
+                    ״חוסך לי ים של זמן, ים של כסף ובעיקר התעסקות מתישה עם לקוחות ועם דברים טכניים, שפשוט כבעל עסק לא בא
+                    לי להתעסק איתם״
+                </p>
+                <h3 class="highlight-text" style="color: var(--text-main); font-size: 1.2rem; margin-top: 1rem;">אוהד
+                    לוי, בעלים של
+                    חברת אוהדוונצ'רס</h3>
+            </div>
+
+            <!-- Left Side: Video -->
+            <div class="video-container-wrapper">
+                <div class="video-frame">
+                    <video controls width="100%" title="עדות אוהד לוי – אוטומציות חוסכות זמן וכסף">
+                        <source src="assets/Ohad.MP4" type="video/mp4">
+                        הדפדפן שלך לא תומך בניגון וידאו.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: The Problem (אתה כבר לא בהתחלה) -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">אתה כבר לא בהתחלה.</h2>
+            <div class="container split-layout">
+                <!-- Right Side: Text Content -->
+                <div class="problem-content">
+                    <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">יש לקוחות, יש לידים, יש
+                        תנועה</h2>
+                    <h3 class="highlight-text">אבל ככל שהעסק גדל - ככה הלחץ מתפוצץ.</h3>
+
+                    <p>רוב הזמן שלך נשרף על דברים שלא באמת מקדמים את העסק:</p>
+                    <ul class="pain-points-list">
+                        <li>הודעות שחוזרות על עצמן</li>
+                        <li>תיאומי פגישות</li>
+                        <li>שליחת קבלות, תשלומים, פתיחת קבוצות</li>
+                    </ul>
+                    <p><strong>שוב, ושוב, ושוב – הכל ידני, הכל עליך.</strong></p>
+
+                    <p class="closing-text">העסק גדל – אבל אתה מרגיש שאתה רק רודף אחריו.</p>
+                </div>
+
+                <!-- Left Side: Problem Cards (The "X" items) -->
+                <div class="problem-visuals">
+                    <div class="problem-list-card">
+                        <div class="card-icon">❌</div>
+                        <div class="card-content">
+                            <h3>אין לך מערכת אחת שמרכזת הכל</h3>
+                        </div>
+                    </div>
+                    <div class="problem-list-card">
+                        <div class="card-icon">❌</div>
+                        <div class="card-content">
+                            <h3>אין לך נתונים אמיתיים לדעת מה עובד</h3>
+                        </div>
+                    </div>
+                    <div class="problem-list-card">
+                        <div class="card-icon">❌</div>
+                        <div class="card-content">
+                            <h3>אין לך זמן לעצור ולהבין איך לשפר</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Section: Process Timeline (איך התהליך עובד?) -->
+    <section class="timeline-section" id="how-it-works">
         <div class="timeline-container">
             <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">אז איך התהליך עובד?</h2>
 
@@ -155,53 +226,39 @@
         </div>
     </section>
 
-    <!-- Section 2: The Problem -->
-    <section class="problem-section">
-        <div class="container">
-            <h2 class="section-title">אתה כבר לא בהתחלה.</h2>
-            <div class="container split-layout">
-                <!-- Right Side: Text Content -->
-                <div class="problem-content">
-                    <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">יש לקוחות, יש לידים, יש
-                        תנועה</h2>
-                    <h3 class="highlight-text">אבל ככל שהעסק גדל - ככה הלחץ מתפוצץ.</h3>
+    <div class="container process-cta">
+        <a href="#contact" class="btn-primary">השאירו פרטים לשיחת התאמה</a>
+    </div>
 
-                    <p>רוב הזמן שלך נשרף על דברים שלא באמת מקדמים את העסק:</p>
-                    <ul class="pain-points-list">
-                        <li>הודעות שחוזרות על עצמן</li>
-                        <li>תיאומי פגישות</li>
-                        <li>שליחת קבלות, תשלומים, פתיחת קבוצות</li>
-                    </ul>
-                    <p><strong>שוב, ושוב, ושוב – הכל ידני, הכל עליך.</strong></p>
-
-                    <p class="closing-text">העסק גדל – אבל אתה מרגיש שאתה רק רודף אחריו.</p>
-                </div>
-
-                <!-- Left Side: Problem Cards (The "X" items) -->
-                <div class="problem-visuals">
-                    <div class="problem-list-card">
-                        <div class="card-icon">❌</div>
-                        <div class="card-content">
-                            <h3>אין לך מערכת אחת שמרכזת הכל</h3>
-                        </div>
-                    </div>
-                    <div class="problem-list-card">
-                        <div class="card-icon">❌</div>
-                        <div class="card-content">
-                            <h3>אין לך נתונים אמיתיים לדעת מה עובד</h3>
-                        </div>
-                    </div>
-                    <div class="problem-list-card">
-                        <div class="card-icon">❌</div>
-                        <div class="card-content">
-                            <h3>אין לך זמן לעצור ולהבין איך לשפר</h3>
-                        </div>
-                    </div>
+    <!-- Shoval Video Testimonial (same design as Ohad) -->
+    <section class="video-section" aria-labelledby="shoval-video-title">
+        <div class="container split-layout video-layout">
+            <!-- Right Side: Video -->
+            <div class="video-container-wrapper">
+                <div class="video-frame">
+                    <video controls width="100%" title="עדות שובל – אוטומציות לתזכורות פגישות">
+                        <source src="assets/עדות שובל.mp4" type="video/mp4">
+                        הדפדפן שלך לא תומך בניגון וידאו.
+                    </video>
                 </div>
             </div>
+
+            <!-- Left Side: Text -->
+            <div class="video-content">
+                <h2 class="section-title" id="shoval-video-title" style="text-align: right; margin-bottom: 1rem;">
+                    שובל כבר הבין את הכוח של האוטומציות
+                </h2>
+                <p class="testimonial-quote">
+                    עשינו אוטומציה אחת פשוטה - וזה שינה לו את כל הדרך שהוא עובד. הכנסנו תהליך אחד קטן והוא כבר הרגיש את ההבדל: <br\>
+                    <br> פחות כאב ראש, יותר שליטה.
+                </p>
+                <h3 class="highlight-text" style="color: var(--text-main); font-size: 1.2rem; margin-top: 1rem;">
+                </h3>
+            </div>
+        </div>
     </section>
 
-    <!-- Mid-Page CTA Section -->
+    <!-- Mid-Page CTA Section (moved right after Shoval testimonial) -->
     <section class="cta-section" aria-labelledby="cta-title-mid">
         <div class="container">
             <div class="cta-card">
@@ -211,18 +268,19 @@
                     <p class="cta-subtitle">השאירו פרטים ואחזור אליכם לשיחת התאמה קצרה.</p>
 
                     <form class="contact-form-inline" aria-label="טופס יצירת קשר">
-                        <div class="input-group">
-                            <label for="contact-name-mid" class="visually-hidden">שם מלא</label>
-                            <input id="contact-name-mid" type="text" placeholder="שם מלא" required autocomplete="name"
-                                aria-required="true"
-                                oninvalid="this.setCustomValidity('איך אני אדע איך קוראים לך?')"
-                                oninput="this.setCustomValidity('')">
-                        </div>
+                        <!-- Phone first so it appears on the right in RTL -->
                         <div class="input-group">
                             <label for="contact-phone-mid" class="visually-hidden">טלפון</label>
                             <input id="contact-phone-mid" type="tel" placeholder="טלפון" required autocomplete="tel"
                                 aria-required="true"
                                 oninvalid="this.setCustomValidity('איך אני אתקשר אליך?')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="input-group">
+                            <label for="contact-name-mid" class="visually-hidden">שם מלא</label>
+                            <input id="contact-name-mid" type="text" placeholder="שם מלא" required autocomplete="name"
+                                aria-required="true"
+                                oninvalid="this.setCustomValidity('איך אני אדע איך קוראים לך?')"
                                 oninput="this.setCustomValidity('')">
                         </div>
                         <button type="submit" class="btn-primary">דברו איתי 🚀</button>
@@ -233,29 +291,95 @@
         </div>
     </section>
 
-    <!-- Section 2.5: Video Testimonial (Split Layout) -->
-    <section class="video-section">
-        <div class="container split-layout video-layout">
-            <!-- Right Side: Text -->
-            <div class="video-content">
-                <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">טעימה קטנה ממה שיש ללקוח להגיד
-                </h2>
-                <p class="testimonial-quote">
-                    ״חוסך לי ים של זמן, ים של כסף ובעיקר התעסקות מתישה עם לקוחות ועם דברים טכניים, שפשוט כבעל עסק לא בא
-                    לי להתעסק איתם״
-                </p>
-                <h3 class="highlight-text" style="color: var(--text-main); font-size: 1.2rem; margin-top: 1rem;">אוהד
-                    לוי, בעלים של
-                    חברת אוהדוונצ'רס</h3>
+    <!-- Before vs After Section -->
+    <section class="before-after-section" aria-labelledby="before-after-title">
+        <div class="container">
+            <h2 class="section-title" id="before-after-title">ההבדל בין לעבוד לבין לעבוד חכם</h2>
+            <p class="before-after-subtitle">מטבלאות, בלאגן ומעקב ידני - למערכת אחת שמסדרת הכל</p>
+            <div class="before-after-widget">
+                <div class="before-side">
+                    <span class="before-after-label before-label">לפני</span>
+                    <div class="before-cards-wrap">
+                        <div class="before-card">
+                            <img src="assets/before-google-sheets.png" alt="ניהול לידים בגוגל שיטס – מעקב ידני, טבלאות מפוזרות">
+                        </div>
+                        <div class="before-card">
+                            <img src="assets/before-google-sheets-2.png" alt="ניהול לידים בגוגל שיטס – תהליך ידני וסטטוסים בטבלה">
+                        </div>
+                    </div>
+                    <p class="before-after-caption">גוגל שיטס, אקסלים, העתק-הדבק – הכל עליך</p>
+                </div>
+                <div class="before-after-divider" aria-hidden="true">
+                    <span class="before-after-arrow">→</span>
+                </div>
+                <div class="after-side">
+                    <span class="before-after-label after-label">אחרי</span>
+                    <div class="after-cards-wrap">
+                        <div class="after-card">
+                            <img src="assets/after-crm.png" alt="מערכת CRM – לידים, פגישות וזימונים במקום אחד">
+                        </div>
+                        <div class="after-card">
+                            <img src="assets/after-crm-2.png" alt="מערכת CRM – ניהול לידים, קמפיינים ומקורות הגעה">
+                        </div>
+                    </div>
+                    <p class="before-after-caption">מערכת CRM – הכל במקום אחד, עובד בשבילך</p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Left Side: Video -->
-            <div class="video-container-wrapper">
-                <div class="video-frame">
-                    <video controls width="100%" title="עדות אוהד לוי – אוטומציות חוסכות זמן וכסף">
-                        <source src="assets/Ohad.MP4" type="video/mp4">
-                        הדפדפן שלך לא תומך בניגון וידאו.
-                    </video>
+    <!-- Analytics Dashboard Section (הגיע הזמן להיות במעקב על) -->
+    <section class="analytics-section" aria-labelledby="analytics-title">
+        <div class="container analytics-container">
+            <div class="analytics-content">
+                <h2 class="analytics-title" id="analytics-title">הגיע הזמן<br><span class="analytics-title-highlight">להיות במעקב על:</span></h2>
+                <ul class="analytics-list">
+                    <li class="analytics-list-item" data-panel="1">
+                        <span class="analytics-item-icon">👥</span>
+                        <span class="analytics-item-text">נציגי המכירות</span>
+                    </li>
+                    <li class="analytics-list-item" data-panel="2">
+                        <span class="analytics-item-icon">📊</span>
+                        <span class="analytics-item-text">מכירות לפי קמפיינים</span>
+                    </li>
+                    <li class="analytics-list-item" data-panel="3">
+                        <span class="analytics-item-icon">💰</span>
+                        <span class="analytics-item-text">החזרי השקעה ממקורות הלידים</span>
+                    </li>
+                    <li class="analytics-list-item" data-panel="4">
+                        <span class="analytics-item-icon">📈</span>
+                        <span class="analytics-item-text">תהליכי המכירה וסטטוס הלידים</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="analytics-visuals">
+                <div class="analytics-dashboard-stack">
+                    <div class="analytics-dashboard-card card-1">
+                        <img src="assets/dashboard-campaigns.png" alt="פילוח לפי שם הקמפיין – גרף עוגה">
+                    </div>
+                    <div class="analytics-dashboard-card card-2">
+                        <img src="assets/dashboard-services.png" alt="סגירות לפי שירות – גרף עוגה">
+                    </div>
+                    <div class="analytics-dashboard-card card-3">
+                        <img src="assets/dashboard-sales.png" alt="חלוקה לפי אחראי – גרף עמודות">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating CRM Screenshots (moved from hero) -->
+    <section class="crm-screens-section" aria-label="דוגמאות למסכי CRM" hidden>
+        <div class="container">
+            <div class="hero-visuals">
+                <div class="floating-screen screen-1">
+                    <img src="assets/crm-1.jpg" alt="תצוגת מסך של מערכת CRM לניהול לידים">
+                </div>
+                <div class="floating-screen screen-2">
+                    <img src="assets/crm-2.jpg" alt="תצוגת מסך של מערכת CRM לניהול לקוחות">
+                </div>
+                <div class="floating-screen screen-3">
+                    <img src="assets/IMG_9700.jpg" alt="תצוגת מסך של מערכת CRM">
                 </div>
             </div>
         </div>
@@ -303,7 +427,7 @@
                 <!-- Right Side: Text Content -->
                 <div class="about-content">
                     <p class="lead-text">נעים מאוד, אני יותם שממה.</p>
-                    <p>אני עוזר לעסקים לעשות סדר בעסק - <br>
+                    <p>אני עוזר לעסקים לעשות סדר בעסק,<br>
                         להחליף עבודה ידנית ובלאגן במערכת מסודרת שעובדת אוטומטית וברורה.</p>
 
                     <p>עבדתי עם עשרות עסקים שהגיעו בלי מערכת אמיתית:<br>
@@ -401,32 +525,6 @@
         </div>
     </section>
 
-    <!-- Section 5.5: Shoval Video Testimonial -->
-    <section class="video-section">
-        <div class="container split-layout video-layout" style="gap: 2rem;">
-            <!-- Left Side: Video (Now Right in RTL) -->
-            <div class="video-container-wrapper" style="flex: 0 0 300px; max-width: 100%;">
-                <div class="video-frame">
-                    <video controls width="100%" style="border-radius: 16px;" title="עדות שובל – אוטומציות לתזכורות פגישות">
-                        <source src="assets/עדות שובל.mp4" type="video/mp4">
-                        הדפדפן שלך לא תומך בניגון וידאו.
-                    </video>
-                </div>
-                <div class="neon-shape shape-1" aria-hidden="true"
-                    style="width: 200px; height: 200px; opacity: 0.1; top: -10px; right: -10px;"></div>
-            </div>
-
-            <!-- Right Side: Text (Now Left in RTL) -->
-            <div class="video-content" style="flex: 1;">
-                <h2 class="section-title" style="text-align: right; margin-bottom: 0.2rem; font-size: 1.8rem;">אני לא
-                    חושב שאני צריך יותר מדי להסביר כמה כוח יש לאוטומציות</h2>
-                <p class="testimonial-quote" style="font-size: 1.1rem;">
-                    פשוט תשמעו מה שובל אמר ותראו את הסרטון הזה
-                </p>
-            </div>
-        </div>
-    </section>
-
     <!-- Section 6: CTA (Gradient Card) -->
     <section id="contact" class="cta-section" aria-labelledby="cta-title-contact">
         <div class="container">
@@ -437,18 +535,19 @@
                     <p class="cta-subtitle">השאירו פרטים ואחזור אליכם לשיחת התאמה קצרה.</p>
 
                     <form class="contact-form-inline" aria-label="טופס יצירת קשר">
-                        <div class="input-group">
-                            <label for="contact-name" class="visually-hidden">שם מלא</label>
-                            <input id="contact-name" type="text" placeholder="שם מלא" required autocomplete="name"
-                                aria-required="true"
-                                oninvalid="this.setCustomValidity('איך אני אדע איך קוראים לך?')"
-                                oninput="this.setCustomValidity('')">
-                        </div>
+                        <!-- Phone first so it appears on the right in RTL -->
                         <div class="input-group">
                             <label for="contact-phone" class="visually-hidden">טלפון</label>
                             <input id="contact-phone" type="tel" placeholder="טלפון" required autocomplete="tel"
                                 aria-required="true"
                                 oninvalid="this.setCustomValidity('איך אני אתקשר אליך?')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="input-group">
+                            <label for="contact-name" class="visually-hidden">שם מלא</label>
+                            <input id="contact-name" type="text" placeholder="שם מלא" required autocomplete="name"
+                                aria-required="true"
+                                oninvalid="this.setCustomValidity('איך אני אדע איך קוראים לך?')"
                                 oninput="this.setCustomValidity('')">
                         </div>
                         <button type="submit" class="btn-primary">דברו איתי 🚀</button>

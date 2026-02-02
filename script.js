@@ -141,61 +141,135 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Particles Background ---
+    // --- Flowing Background (interactive, gentle) ---
     const canvas = document.getElementById('particles-canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const ctx = canvas?.getContext?.('2d');
+    if (canvas && ctx) {
+        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+        const isA11yReduceMotion = () => document.body.classList.contains('a11y-reduce-motion');
+        if (!prefersReducedMotion && !isA11yReduceMotion()) {
+            const dpr = Math.min(2, window.devicePixelRatio || 1);
+            let w = 0;
+            let h = 0;
 
-    let particlesArray;
+            const mouse = { x: 0, y: 0, active: false };
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                mouse.active = true;
+            }, { passive: true });
+            window.addEventListener('mouseleave', () => {
+                mouse.active = false;
+            }, { passive: true });
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 0.5;
-            this.speedX = Math.random() * 1 - 0.5;
-            this.speedY = Math.random() * 1 - 0.5;
-            this.color = Math.random() > 0.5 ? '#6d28d9' : '#06b6d4';
-        }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-            if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-        }
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+            function resize() {
+                w = window.innerWidth;
+                h = window.innerHeight;
+                canvas.width = Math.floor(w * dpr);
+                canvas.height = Math.floor(h * dpr);
+                canvas.style.width = `${w}px`;
+                canvas.style.height = `${h}px`;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            resize();
+
+            // "Automation pipes" – smooth tubes flowing across the page
+            const pipes = [];
+            function rand(min, max) { return min + Math.random() * (max - min); }
+            function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+            function buildPipes() {
+                pipes.length = 0;
+                const count = clamp(Math.floor(h / 220), 4, 7);
+                for (let i = 0; i < count; i++) {
+                    const y = (h * (i + 1)) / (count + 1);
+                    pipes.push({
+                        baseY: y,
+                        amp: rand(18, 42),
+                        freq: rand(0.0012, 0.0022),
+                        phase: rand(0, Math.PI * 2),
+                        thickness: rand(8, 14),
+                        hue: rand(205, 245), // blue-ish
+                        speed: rand(0.06, 0.12),
+                    });
+                }
+            }
+            buildPipes();
+
+            let t = 0;
+            let raf = 0;
+            let last = performance.now();
+
+            function pipeY(pipe, x, tt, mouseShift) {
+                return pipe.baseY
+                    + Math.sin(x * pipe.freq + tt * pipe.speed + pipe.phase) * pipe.amp
+                    + Math.sin(x * pipe.freq * 0.55 - tt * pipe.speed * 0.7) * (pipe.amp * 0.35)
+                    + mouseShift;
+            }
+
+            function step(now) {
+                // Stop if user toggles reduce motion in widget
+                if (isA11yReduceMotion()) {
+                    cancelAnimationFrame(raf);
+                    ctx.clearRect(0, 0, w, h);
+                    return;
+                }
+
+                const dt = Math.min(0.033, (now - last) / 1000);
+                last = now;
+                t += now;
+
+                // Gentle clear (no trails for pipes; keeps it clean)
+                ctx.clearRect(0, 0, w, h);
+
+                // Very subtle interaction: mouse shifts nearby pipes a tiny bit
+                const mouseShift = mouse.active ? (mouse.y - h / 2) * 0.01 : 0;
+
+                for (let i = 0; i < pipes.length; i++) {
+                    const p = pipes[i];
+                    const hue = p.hue;
+
+                    // Base tube stroke (soft)
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.lineWidth = p.thickness;
+                    ctx.strokeStyle = `hsla(${hue}, 80%, 55%, 0.10)`;
+
+                    ctx.beginPath();
+                    for (let x = -40; x <= w + 40; x += 24) {
+                        const y = pipeY(p, x, t, mouseShift * (0.35 + i * 0.08));
+                        if (x === -40) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
+
+                    // Inner highlight (makes it feel like a pipe)
+                    ctx.lineWidth = Math.max(2, p.thickness * 0.35);
+                    ctx.strokeStyle = `hsla(${hue}, 90%, 65%, 0.10)`;
+                    ctx.stroke();
+
+                    // Flow "packet" highlight traveling along the pipe
+                    const flowX = ((t * 0.08 * 60) % (w + 400)) - 200; // move across
+                    const yFlow = pipeY(p, flowX, t, mouseShift * (0.35 + i * 0.08));
+                    const grd = ctx.createRadialGradient(flowX, yFlow, 0, flowX, yFlow, p.thickness * 1.8);
+                    grd.addColorStop(0, `hsla(${hue}, 90%, 70%, 0.18)`);
+                    grd.addColorStop(1, `hsla(${hue}, 90%, 70%, 0)`);
+                    ctx.fillStyle = grd;
+                    ctx.beginPath();
+                    ctx.arc(flowX, yFlow, p.thickness * 1.8, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                raf = requestAnimationFrame(step);
+            }
+
+            raf = requestAnimationFrame(step);
+            window.addEventListener('resize', () => {
+                resize();
+                buildPipes();
+            }, { passive: true });
         }
     }
-
-    function initParticles() {
-        particlesArray = [];
-        for (let i = 0; i < 50; i++) {
-            particlesArray.push(new Particle());
-        }
-    }
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            particlesArray[i].draw();
-        }
-        requestAnimationFrame(animateParticles);
-    }
-
-    initParticles();
-    animateParticles();
-
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initParticles();
-    });
 
     // --- Hero Blob Animation ---
     const blob = document.querySelector('.blob');
@@ -209,4 +283,103 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { duration: 3000, fill: "forwards" });
         });
     }
+
+    // --- Testimonial Slider - Infinite Marquee (true endless, no jump) ---
+    (function initTestimonialMarquee() {
+        const marquee = document.querySelector('.testimonial-slider');
+        const track = marquee?.querySelector('.testimonial-slider-track');
+        if (!marquee || !track) return;
+
+        // Respect reduced motion
+        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+        if (prefersReducedMotion) return;
+
+        // Prevent double-init (e.g. hot reload / repeated DOMContentLoaded)
+        if (track.dataset.marqueeInit === '1') return;
+        track.dataset.marqueeInit = '1';
+
+        const speed = 75; // px/sec
+        let rafId = 0;
+        let last = performance.now();
+        let x = 0;
+        let setWidth = 0;
+        let paused = false;
+
+        function parseGapPx(trackEl) {
+            const cs = getComputedStyle(trackEl);
+            const raw = (cs.columnGap || cs.gap || '0').toString().trim().split(' ')[0];
+            const n = parseFloat(raw);
+            return Number.isFinite(n) ? n : 0;
+        }
+
+        function appendSet(uniqueEls) {
+            const frag = document.createDocumentFragment();
+            uniqueEls.forEach((el) => frag.appendChild(el.cloneNode(true)));
+            track.appendChild(frag);
+        }
+
+        function prepareTrack() {
+            const originals = Array.from(track.querySelectorAll('.hero-testimonial-card'));
+            if (originals.length === 0) return false;
+
+            // Keep exactly 3 testimonials
+            const unique = originals.slice(0, 3);
+
+            track.innerHTML = '';
+            unique.forEach((el) => track.appendChild(el));
+
+            // Ensure at least two sets exist
+            appendSet(unique);
+
+            const gapPx = parseGapPx(track);
+            const firstSet = Array.from(track.children).slice(0, unique.length);
+            const widthsSum = firstSet.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
+            setWidth = widthsSum + gapPx * Math.max(0, firstSet.length - 1);
+
+            // Add more sets so we never “run out” visually
+            const targetWidth = setWidth + marquee.clientWidth + 200;
+            let safety = 0;
+            while (track.scrollWidth < targetWidth && safety < 20) {
+                appendSet(unique);
+                safety += 1;
+            }
+
+            x = 0;
+            track.style.transform = 'translate3d(0px, 0px, 0px)';
+            return setWidth > 0;
+        }
+
+        function tick(now) {
+            const dt = (now - last) / 1000;
+            last = now;
+
+            if (!paused) {
+                x -= speed * dt;
+                // Wrap without losing fractional remainder (prevents “pop”)
+                while (setWidth > 0 && x <= -setWidth) x += setWidth;
+                track.style.transform = `translate3d(${x}px, 0px, 0px)`;
+            }
+
+            rafId = requestAnimationFrame(tick);
+        }
+
+        function start() {
+            cancelAnimationFrame(rafId);
+            last = performance.now();
+            rafId = requestAnimationFrame(tick);
+        }
+
+        const run = () => {
+            if (!prepareTrack()) return;
+            start();
+        };
+
+        if (document.readyState === 'complete') run();
+        else window.addEventListener('load', run, { once: true });
+
+        marquee.addEventListener('mouseenter', () => { paused = true; });
+        marquee.addEventListener('mouseleave', () => { paused = false; last = performance.now(); });
+
+        window.addEventListener('resize', run);
+    })();
 });

@@ -2072,6 +2072,8 @@ body.lightbox-open {
         text-align: center !important;
     }
     .ohad-video-title {
+        order: 0;
+        width: 100%;
         text-align: center !important;
     }
 

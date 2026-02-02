@@ -2262,6 +2262,7 @@ body.lightbox-open {
     }
     .shoval-video-wrap {
         max-width: 100%;
+        margin: 0 auto;
         max-height: 420px;
     }
     .shoval-quote-widget {

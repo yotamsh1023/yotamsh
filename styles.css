@@ -2257,15 +2257,18 @@ body.lightbox-open {
         flex-direction: column;
         gap: 1.5rem;
         text-align: center;
+        align-items: center;
     }
     .shoval-video-side {
         order: 1;
+        align-items: center;
     }
     .shoval-widget-side {
         order: 2;
     }
     .shoval-video-wrap {
-        max-width: 100%;
+        width: 100%;
+        max-width: 320px;
         margin: 0 auto;
         max-height: 420px;
     }

@@ -1675,12 +1675,19 @@ body.lightbox-open {
     .why-me-section {
         padding: 4rem 0;
     }
+    .why-me-section .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
     .about-split-layout {
         gap: 1.5rem;
         margin-top: 1.5rem;
     }
     .profile-photo-wrapper {
         max-width: 320px;
+    }
+    .about-content {
+        max-width: 100%;
     }
     .about-content .lead-text {
         font-size: 1.5rem;
@@ -1689,8 +1696,8 @@ body.lightbox-open {
         font-size: 1.2rem;
     }
     .about-content p {
-        font-size: 1rem;
-        line-height: 1.65;
+        font-size: 0.98rem;
+        line-height: 1.5;
     }
 }
 

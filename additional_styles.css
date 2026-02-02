@@ -154,6 +154,34 @@
     }
 }
 
+@media (max-width: 480px) {
+    .testimonial-slider {
+        margin: 1rem 0;
+        padding: 0.5rem 0;
+    }
+
+    .hero-testimonial-card {
+        min-width: clamp(240px, 88vw, 320px);
+        max-width: clamp(260px, 92vw, 340px);
+        padding: 0.85rem 1rem;
+        border-radius: 18px;
+        gap: 0.6rem;
+    }
+
+    .testimonial-avatar {
+        width: 42px;
+        height: 42px;
+    }
+
+    .testimonial-text {
+        font-size: 0.85rem;
+    }
+
+    .testimonial-name {
+        font-size: 0.8rem;
+    }
+}
+
 /* Who Am I Section Overrides - Wide Layout */
 .why-me-section .container {
     max-width: 1400px !important;

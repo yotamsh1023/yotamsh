@@ -304,6 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let x = 0;
         let setWidth = 0;
         let paused = false;
+        let lastViewportWidth = window.innerWidth;
 
         function parseGapPx(trackEl) {
             const cs = getComputedStyle(trackEl);
@@ -350,7 +351,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function tick(now) {
-            const dt = (now - last) / 1000;
+            // iOS may pause rAF while scrolling; cap dt to avoid “jump” on resume
+            const dt = Math.min(0.05, (now - last) / 1000);
             last = now;
 
             if (!paused) {
@@ -377,9 +379,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.readyState === 'complete') run();
         else window.addEventListener('load', run, { once: true });
 
-        marquee.addEventListener('mouseenter', () => { paused = true; });
-        marquee.addEventListener('mouseleave', () => { paused = false; last = performance.now(); });
+        // Pause on hover only for real mouse pointers (avoid touch causing stuck pause)
+        const canHover = window.matchMedia?.('(hover: hover) and (pointer: fine)')?.matches;
+        if (canHover) {
+            marquee.addEventListener('mouseenter', () => { paused = true; });
+            marquee.addEventListener('mouseleave', () => { paused = false; last = performance.now(); });
+        }
 
-        window.addEventListener('resize', run);
+        // iOS Safari triggers resize on scroll (address bar). Only rebuild when WIDTH changes.
+        window.addEventListener('resize', () => {
+            const w = window.innerWidth;
+            if (Math.abs(w - lastViewportWidth) < 2) return;
+            lastViewportWidth = w;
+            run();
+        });
     })();
 });

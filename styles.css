@@ -66,6 +66,16 @@ body {
     background-attachment: fixed;
 }
 
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+iframe {
+    max-width: 100%;
+}
+
 @media (max-width: 768px) {
     body {
         font-size: 0.95rem;
@@ -251,7 +261,8 @@ ul {
     padding: 1.25rem 2.75rem;
     font-size: 1.1rem;
     font-weight: 700;
-    min-width: 340px;
+    width: 100%;
+    max-width: 340px;
     text-align: center;
     background: var(--accent-blue);
     color: #fff;
@@ -367,6 +378,9 @@ ul {
     .hero-buttons {
         margin-top: 2rem;
     }
+    .hero-visuals {
+        gap: 1.25rem;
+    }
     .hero-widget-btn--square {
         min-width: 0;
         width: 100%;
@@ -382,6 +396,12 @@ ul {
     }
     .hero-buttons {
         gap: 0.75rem;
+        width: 100%;
+    }
+    .hero-buttons .btn-primary,
+    .hero-buttons .hero-widget-btn {
+        width: 100%;
+        max-width: 360px;
     }
 }
 
@@ -412,7 +432,8 @@ ul {
 
 .floating-screen {
     position: relative;
-    width: 280px;
+    width: clamp(220px, 26vw, 300px);
+    max-width: 100%;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -625,15 +646,19 @@ ul {
 @media (max-width: 768px) {
     .process-tabs {
         overflow-x: auto;
-        padding: 0 1rem 16px;
+        padding: 0 1rem;
         justify-content: flex-start;
         gap: 1.25rem;
         scroll-snap-type: x mandatory;
+        align-items: center;
+        -webkit-overflow-scrolling: touch;
     }
 
     .glowing-line {
         width: 150%;
         /* Extend line for scrolling */
+        top: 24px;           /* center of 48px icon */
+        transform: none;     /* avoid centering against padding */
     }
 
     .tab-item {
@@ -988,6 +1013,25 @@ ul {
     }
 }
 
+@media (max-width: 480px) {
+    .before-after-section {
+        padding: 4rem 0;
+        background-attachment: scroll;
+    }
+    .before-after-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        padding: 0 0.5rem;
+    }
+    .before-after-widget {
+        gap: 1.25rem;
+    }
+    .before-after-label {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
 /* --- Analytics Dashboard Section (הגיע הזמן להיות במעקב על) --- */
 .analytics-section {
     padding: var(--spacing-xl) 0;
@@ -1189,19 +1233,25 @@ ul {
 
 @media (max-width: 480px) {
     .analytics-dashboard-card {
-        width: 150px;
+        width: clamp(120px, 40vw, 150px);
+    }
+    .analytics-visuals {
+        min-height: 280px;
+    }
+    .analytics-dashboard-stack {
+        height: 280px;
     }
 
     .analytics-dashboard-card.card-1 {
-        left: 10px;
+        left: 0;
     }
 
     .analytics-dashboard-card.card-2 {
-        left: 140px;
+        left: 52%;
     }
 
     .analytics-dashboard-card.card-3 {
-        left: 60px;
+        left: 18%;
     }
 }
 
@@ -2508,5 +2558,16 @@ footer {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 4rem 0;
+    }
+
+    .contact-form {
+        padding: 2rem 1.25rem;
+        border-radius: 22px;
     }
 }

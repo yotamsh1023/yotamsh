@@ -2071,6 +2071,10 @@ body.lightbox-open {
         /* Center video on mobile */
     }
 
+    .video-frame {
+        margin: 0 auto;
+    }
+
     .video-content {
         order: 2;
         text-align: center;

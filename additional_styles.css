@@ -50,8 +50,8 @@
     box-shadow: 0 4px 20px rgba(68, 98, 181, 0.08);
     border-radius: 24px;
     padding: 1.25rem 1.75rem;
-    min-width: clamp(280px, 78vw, 420px);
-    max-width: clamp(320px, 82vw, 520px);
+    min-width: 480px;
+    max-width: 520px;
     direction: rtl;
     text-align: right;
     flex-shrink: 0;
@@ -126,8 +126,8 @@
     }
 
     .hero-testimonial-card {
-        min-width: clamp(260px, 86vw, 360px);
-        max-width: clamp(280px, 90vw, 380px);
+        min-width: 320px;
+        max-width: 360px;
         padding: 1rem 1.25rem;
         border-radius: 20px;
         gap: 0.75rem;
@@ -151,34 +151,6 @@
         font-size: 1.1rem !important;
         width: 90%;
         text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .testimonial-slider {
-        margin: 1rem 0;
-        padding: 0.5rem 0;
-    }
-
-    .hero-testimonial-card {
-        min-width: clamp(240px, 88vw, 320px);
-        max-width: clamp(260px, 92vw, 340px);
-        padding: 0.85rem 1rem;
-        border-radius: 18px;
-        gap: 0.6rem;
-    }
-
-    .testimonial-avatar {
-        width: 42px;
-        height: 42px;
-    }
-
-    .testimonial-text {
-        font-size: 0.85rem;
-    }
-
-    .testimonial-name {
-        font-size: 0.8rem;
     }
 }
 
@@ -214,7 +186,7 @@
 
 /* Hero Tagline - intro above headline (bold, black, prominent) */
 .hero-tagline {
-    font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+    font-size: 1.5rem;
     font-weight: 700;
     color: #000 !important;
     margin: 0 0 1.25rem 0;

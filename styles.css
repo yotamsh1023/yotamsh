@@ -2071,6 +2071,10 @@ body.lightbox-open {
         /* Center video on mobile */
     }
 
+    .video-section--shoval-main .video-frame {
+        margin-right: 0;
+    }
+
     .video-frame {
         margin: 0 auto;
     }

@@ -82,7 +82,7 @@ body.thank-you-page {
     max-width: 720px;
     width: 100%;
     backdrop-filter: blur(8px);
-    animation: cardShake 0.5s ease-in-out 5 forwards, cardGlow 2.5s ease-in-out infinite;
+    animation: cardShake 0.5s ease-in-out 14 forwards, cardGlow 2.5s ease-in-out infinite;
 }
 
 

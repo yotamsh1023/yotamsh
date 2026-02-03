@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Intentionally ignore network errors to avoid blocking the UI
             });
 
-            window.location.href = 'thank-you.html';
+            window.location.href = 'thank-you/';
         });
     });
 

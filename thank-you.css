@@ -1,0 +1,305 @@
+* {
+    box-sizing: border-box;
+}
+
+body.thank-you-page {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Heebo', sans-serif;
+    background: radial-gradient(circle at 10% 20%, #e9f0ff 0%, #f8fbff 40%, #ffffff 70%);
+    color: #1b2a4a;
+    overflow: hidden;
+}
+
+.thank-you-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+}
+
+#celebration-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.pop-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.popper {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+    animation: popFloat 2.6s ease-out forwards;
+}
+
+.popper--emoji {
+    font-size: 1.6rem;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 24px rgba(68, 98, 181, 0.2);
+    padding: 0.4rem 0.6rem;
+}
+
+.popper--bubble {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, rgba(68, 98, 181, 0.9), rgba(141, 176, 255, 0.9));
+    box-shadow: 0 12px 28px rgba(68, 98, 181, 0.35);
+}
+
+.popper--ring {
+    width: 44px;
+    height: 44px;
+    border: 3px solid rgba(255, 209, 102, 0.9);
+    box-shadow: 0 0 20px rgba(255, 209, 102, 0.6);
+}
+
+.thank-you-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 28px;
+    padding: 3rem 3.5rem;
+    text-align: center;
+    box-shadow:
+        0 0 0 2px rgba(68, 98, 181, 0.2),
+        0 24px 60px rgba(68, 98, 181, 0.25),
+        0 0 80px rgba(141, 176, 255, 0.2);
+    border: 2px solid rgba(68, 98, 181, 0.25);
+    max-width: 720px;
+    width: 100%;
+    backdrop-filter: blur(8px);
+    animation: cardShake 0.5s ease-in-out 5 forwards, cardGlow 2.5s ease-in-out infinite;
+}
+
+
+.thank-you-card h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+.thank-you-title {
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 0 18px rgba(68, 98, 181, 0.35);
+    animation: titlePulse 2.4s ease-in-out infinite;
+}
+
+.thank-you-card p {
+    margin: 0.5rem 0;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    line-height: 1.7;
+}
+
+.thank-you-note {
+    margin-top: 1.2rem;
+    color: #36508e;
+    font-weight: 600;
+}
+
+.thank-you-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 0.85rem 2.25rem;
+    border-radius: 999px;
+    background: #4462b5;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 12px 24px rgba(68, 98, 181, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.thank-you-btn:hover,
+.thank-you-btn:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 30px rgba(68, 98, 181, 0.35);
+}
+
+.floating-glow {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    filter: blur(0);
+    background: radial-gradient(circle, rgba(141, 176, 255, 0.45) 0%, rgba(141, 176, 255, 0) 70%);
+    animation: float 8s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.streaks {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.streak {
+    position: absolute;
+    width: 220px;
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(141, 176, 255, 0.9), rgba(255, 255, 255, 0));
+    opacity: 0.7;
+    animation: streakMove 6s linear infinite;
+}
+
+.streak-1 {
+    top: 18%;
+    animation-delay: 0s;
+}
+
+.streak-2 {
+    top: 52%;
+    width: 280px;
+    animation-delay: -2s;
+}
+
+.streak-3 {
+    top: 78%;
+    width: 180px;
+    animation-delay: -4s;
+}
+
+.glow-1 {
+    top: 12%;
+    right: 12%;
+}
+
+.glow-2 {
+    bottom: 10%;
+    left: 15%;
+    animation-delay: -2s;
+}
+
+.glow-3 {
+    top: 50%;
+    left: 70%;
+    width: 180px;
+    height: 180px;
+    animation-delay: -4s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes cardShake {
+    0%, 90% {
+        transform: rotate(-0.6deg) scale(1);
+    }
+    25% {
+        transform: rotate(0.5deg) scale(1.008);
+    }
+    50% {
+        transform: rotate(-0.4deg) scale(1);
+    }
+    75% {
+        transform: rotate(0.5deg) scale(1.005);
+    }
+    100% {
+        transform: rotate(0) scale(1);
+    }
+}
+
+@keyframes cardGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 0 2px rgba(68, 98, 181, 0.2),
+            0 24px 60px rgba(68, 98, 181, 0.25),
+            0 0 80px rgba(141, 176, 255, 0.2);
+    }
+    50% {
+        box-shadow:
+            0 0 0 3px rgba(68, 98, 181, 0.35),
+            0 28px 70px rgba(68, 98, 181, 0.35),
+            0 0 100px rgba(141, 176, 255, 0.35);
+    }
+}
+
+@keyframes titlePulse {
+    0%, 100% {
+        transform: translateY(0);
+        text-shadow: 0 0 18px rgba(68, 98, 181, 0.35);
+    }
+    50% {
+        transform: translateY(-2px);
+        text-shadow: 0 0 26px rgba(68, 98, 181, 0.55);
+    }
+}
+
+@keyframes streakMove {
+    0% {
+        transform: translateX(120%);
+    }
+    100% {
+        transform: translateX(-140%);
+    }
+}
+
+@keyframes popFloat {
+    0% {
+        transform: translate(-50%, -50%) scale(0.2) rotate(-8deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -60%) scale(1.1) rotate(6deg);
+    }
+    60% {
+        opacity: 0.95;
+        transform: translate(-50%, -90%) scale(0.95) rotate(-4deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -140%) scale(0.8) rotate(10deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .thank-you-card {
+        padding: 2.25rem 1.75rem;
+        border-radius: 22px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .floating-glow {
+        animation: none;
+    }
+
+    .popper {
+        animation: none;
+        opacity: 0;
+    }
+
+    .thank-you-title,
+    .streak {
+        animation: none;
+    }
+
+    .thank-you-card {
+        animation: none;
+    }
+}

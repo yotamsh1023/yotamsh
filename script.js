@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Contact forms: send webhook with name, phone, timestamp
     const webhookUrl = 'https://hook.eu2.make.com/xrdbrtovig22behyevxex02ledxhiyq1';
     document.querySelectorAll('.contact-form-inline').forEach(form => {
-        form.addEventListener('submit', async (event) => {
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
             const nameInput = form.querySelector('input[type="text"]');
             const phoneInput = form.querySelector('input[type="tel"]');
@@ -203,16 +203,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 timestamp: new Date().toISOString()
             };
 
-            try {
-                await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    keepalive: true
-                });
-            } catch (error) {
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                keepalive: true
+            }).catch(() => {
                 // Intentionally ignore network errors to avoid blocking the UI
-            }
+            });
+
+            window.location.href = 'thank-you.html';
         });
     });
 

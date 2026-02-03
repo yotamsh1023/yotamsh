@@ -35,7 +35,7 @@
 
         const text = document.createElement('p');
         text.className = 'cookie-consent__text';
-        text.innerHTML = 'האתר משתמש בעוגיות כדי לשפר את החוויה. ניתן לקרוא עוד ב-<a href="privacy.html#cookies">מדיניות הפרטיות</a>.';
+        text.innerHTML = 'האתר משתמש בעוגיות כדי לשפר את החוויה. ניתן לקרוא עוד ב-<a href="/privacy/#cookies">מדיניות הפרטיות</a>.';
 
         const actions = document.createElement('div');
         actions.className = 'cookie-consent__actions';

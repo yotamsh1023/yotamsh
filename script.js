@@ -190,6 +190,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Contact forms: send webhook with name, phone, timestamp
+    const webhookUrl = 'https://hook.eu2.make.com/xrdbrtovig22behyevxex02ledxhiyq1';
+    document.querySelectorAll('.contact-form-inline').forEach(form => {
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const nameInput = form.querySelector('input[type="text"]');
+            const phoneInput = form.querySelector('input[type="tel"]');
+            const payload = {
+                name: nameInput?.value?.trim() || '',
+                phone: phoneInput?.value?.trim() || '',
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                    keepalive: true
+                });
+            } catch (error) {
+                // Intentionally ignore network errors to avoid blocking the UI
+            }
+        });
+    });
+
     // --- 3D Tilt Effect (Subtler) ---
     const cards = document.querySelectorAll('.problem-card, .why-card, .testimonial-card');
 
